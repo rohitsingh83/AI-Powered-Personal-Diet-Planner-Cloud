@@ -56,6 +56,7 @@ def create_diet_plan(req: DietPlanRequest, current_user: User = Depends(get_curr
         "id": plan.id,
         "message": "Diet plan generated successfully",
         "plan_data": loaded_data,
+        "plan_json": loaded_data,
         "meals": meals_text if isinstance(top_meals, str) else meals_text,
         "meals_dict": top_meals,
         "total_calories": plan.target_calories,
@@ -63,6 +64,7 @@ def create_diet_plan(req: DietPlanRequest, current_user: User = Depends(get_curr
         "dietary_preference": plan.dietary_preference,
         "goal": plan.goal,
     }
+
 
 @router.get("/plans")
 def list_diet_plans(current_user: User = Depends(get_current_user), db: Session = Depends(get_db)):
@@ -83,6 +85,7 @@ def get_diet_plan(plan_id: str, current_user: User = Depends(get_current_user), 
     if not plan:
         raise HTTPException(status_code=404, detail="Diet plan not found")
     
+    parsed_data = json.loads(plan.plan_data) if isinstance(plan.plan_data, str) else plan.plan_data
     return {
         "id": plan.id,
         "title": plan.title,
@@ -91,8 +94,10 @@ def get_diet_plan(plan_id: str, current_user: User = Depends(get_current_user), 
         "target_calories": plan.target_calories,
         "generated_by": plan.generated_by,
         "created_at": plan.created_at,
-        "plan_data": json.loads(plan.plan_data)
+        "plan_data": parsed_data,
+        "plan_json": parsed_data
     }
+
 
 @router.delete("/plans/{plan_id}")
 def remove_diet_plan(plan_id: str, current_user: User = Depends(get_current_user), db: Session = Depends(get_db)):

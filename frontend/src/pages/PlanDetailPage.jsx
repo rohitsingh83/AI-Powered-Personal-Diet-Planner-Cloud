@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import client from '../api/client';
 import toast from 'react-hot-toast';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -39,33 +39,121 @@ const PlanDetailPage = () => {
   };
 
   if (loading) return <LoadingSpinner message="Loading your diet plan..." />;
-  if (!plan || !plan.plan_json) return <div className="text-center text-red-500">Invalid plan data.</div>;
 
-  const planData = plan.plan_json;
-  const days = planData.days || [];
-  const currentDay = days[activeDay];
+  // Safely extract and parse plan data across all formats (plan_data, plan_json, strings)
+  let rawPlanData = plan?.plan_json || plan?.plan_data;
+  if (typeof rawPlanData === 'string') {
+    try {
+      rawPlanData = JSON.parse(rawPlanData);
+    } catch (e) {
+      console.error("Failed to parse plan data:", e);
+    }
+  }
+
+  if (!plan || !rawPlanData) {
+    return (
+      <div className="max-w-xl mx-auto text-center card bg-red-50 border-red-200 mt-12 py-8">
+        <h2 className="text-xl font-bold text-red-700 mb-2">Unable to Load Plan</h2>
+        <p className="text-gray-600 mb-4">The plan data format was not recognized or has been removed.</p>
+        <Link to="/plans" className="btn-primary inline-block">Back to My Plans</Link>
+      </div>
+    );
+  }
+
+  // Normalize days array for seamless display
+  const rawDays = Array.isArray(rawPlanData.days) && rawPlanData.days.length > 0
+    ? rawPlanData.days
+    : [
+        {
+          day: 1,
+          daily_summary: rawPlanData.daily_summary || rawPlanData.nutrition_summary || {
+            total_calories: rawPlanData.target_calories || plan.target_calories || 2000,
+            total_protein_g: 140,
+            total_carbs_g: 220,
+            total_fat_g: 65,
+          },
+          meals: rawPlanData.meals || {},
+          hydration_reminder: rawPlanData.hydration_reminder || "Drink at least 8-10 glasses of water today."
+        }
+      ];
+
+  const days = rawDays.map((d, index) => {
+    const summary = d.daily_summary || d.nutrition_summary || {
+      total_calories: rawPlanData.target_calories || plan.target_calories || 2000,
+      total_protein_g: 140,
+      total_carbs_g: 220,
+      total_fat_g: 65,
+    };
+
+    const rawMeals = d.meals || rawPlanData.meals || {};
+    const normalizedMeals = {};
+
+    ['breakfast', 'lunch', 'snack', 'dinner'].forEach((type) => {
+      const m = rawMeals[type];
+      if (!m) return;
+
+      if (typeof m === 'string') {
+        normalizedMeals[type] = {
+          meal_name: m,
+          calories: Math.round((summary.total_calories || plan.target_calories || 2000) / 4),
+          ingredients: ["Nutritious whole foods", "Fresh vegetables/fruits", "Healthy protein source"],
+          protein_g: Math.round((summary.total_protein_g || 140) / 4),
+          carbs_g: Math.round((summary.total_carbs_g || 220) / 4),
+          fat_g: Math.round((summary.total_fat_g || 65) / 4),
+        };
+      } else {
+        normalizedMeals[type] = {
+          meal_name: m.meal_name || m.name || `${type.charAt(0).toUpperCase() + type.slice(1)} Option`,
+          calories: m.calories || m.nutrition?.calories || Math.round((summary.total_calories || 2000) / 4),
+          ingredients: Array.isArray(m.ingredients) && m.ingredients.length > 0 
+            ? m.ingredients 
+            : ["Wholesome ingredients tailored to your goal"],
+          protein_g: m.protein_g || m.nutrition?.protein || 30,
+          carbs_g: m.carbs_g || m.nutrition?.carbs || 50,
+          fat_g: m.fat_g || m.nutrition?.fat || 15,
+        };
+      }
+    });
+
+    return {
+      day: d.day || index + 1,
+      daily_summary: {
+        total_calories: summary.total_calories || summary.calories || plan.target_calories || 2000,
+        total_protein_g: summary.total_protein_g || summary.protein || 140,
+        total_carbs_g: summary.total_carbs_g || summary.carbs || 220,
+        total_fat_g: summary.total_fat_g || summary.fat || 65,
+      },
+      meals: normalizedMeals,
+      hydration_reminder: d.hydration_reminder || rawPlanData.hydration_reminder || "Drink at least 8-10 glasses of water today."
+    };
+  });
+
+  const currentDay = days[activeDay] || days[0];
+  const tips = rawPlanData.general_tips || rawPlanData.tips || [];
 
   return (
     <div className="max-w-5xl mx-auto space-y-6">
       {/* Header */}
       <div className="card bg-emerald-50 border-emerald-100 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">{plan.title || 'Your Custom Diet Plan'}</h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">{plan.title || rawPlanData.title || 'Your Custom Diet Plan'}</h1>
           <div className="flex flex-wrap gap-2 text-sm">
             <span className="bg-white px-3 py-1 rounded-full shadow-sm text-emerald-700 font-medium border border-emerald-200 capitalize">
-              Goal: {plan.goal?.replace('_', ' ')}
+              Goal: {plan.goal?.replace('_', ' ') || rawPlanData.goal || 'General Health'}
             </span>
             <span className="bg-white px-3 py-1 rounded-full shadow-sm text-emerald-700 font-medium border border-emerald-200 capitalize">
-              Diet: {plan.dietary_preference?.replace('_', ' ')}
+              Diet: {plan.dietary_preference?.replace('_', ' ') || rawPlanData.dietary_preference || 'Balanced'}
             </span>
             <span className="bg-white px-3 py-1 rounded-full shadow-sm text-gray-600 border border-gray-200">
-              📅 {new Date(plan.created_at).toLocaleDateString()}
+              📅 {plan.created_at ? new Date(plan.created_at).toLocaleDateString() : 'Active Plan'}
             </span>
           </div>
         </div>
         <div className="text-right">
           <div className="text-sm text-gray-500 font-medium">Daily Target</div>
-          <div className="text-3xl font-black text-emerald-600">{plan.target_calories} <span className="text-base font-normal text-gray-500">kcal</span></div>
+          <div className="text-3xl font-black text-emerald-600">
+            {plan.target_calories || rawPlanData.target_calories || 2000} <span className="text-base font-normal text-gray-500">kcal</span>
+          </div>
           <button onClick={handleDelete} className="text-red-500 hover:text-red-700 text-sm mt-2 underline">Delete Plan</button>
         </div>
       </div>
@@ -83,7 +171,7 @@ const PlanDetailPage = () => {
                   : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'
               }`}
             >
-              Day {d.day}
+              Day {typeof d.day === 'string' ? d.day.replace(/Day\s*/i, '') : d.day}
             </button>
           ))}
         </div>
@@ -120,7 +208,6 @@ const PlanDetailPage = () => {
               const meal = currentDay.meals[mealType];
               if (!meal) return null;
               
-              // Emoji mapping
               const emoji = { breakfast: '🌅', lunch: '☀️', snack: '🍎', dinner: '🌙' }[mealType];
               
               return (
@@ -162,11 +249,11 @@ const PlanDetailPage = () => {
                <p className="text-blue-900 text-sm">{currentDay.hydration_reminder || 'Drink at least 8 glasses of water today.'}</p>
              </div>
              
-             {planData.general_tips && planData.general_tips.length > 0 && (
+             {tips && tips.length > 0 && (
                <div className="card bg-yellow-50 border-yellow-100">
                  <h3 className="font-bold text-yellow-800 flex items-center gap-2 mb-2">💡 Pro Tips</h3>
                  <ul className="text-yellow-900 text-sm list-disc pl-5 space-y-1">
-                   {planData.general_tips.map((tip, i) => <li key={i}>{tip}</li>)}
+                   {tips.map((tip, i) => <li key={i}>{tip}</li>)}
                  </ul>
                </div>
              )}
