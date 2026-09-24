@@ -42,7 +42,7 @@ const FilesPage = () => {
       await client.post('/storage/upload', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
-      toast.success("File uploaded successfully");
+      toast.success("File securely uploaded to Cloud Vault!");
       fetchFiles();
     } catch (error) {
       toast.error(error.response?.data?.detail || "Upload failed");
@@ -52,38 +52,35 @@ const FilesPage = () => {
     }
   };
 
-  const handleDownload = (fileId) => {
-    // Open in new tab which will hit the backend endpoint
-    // We need to attach token manually or rely on browser cookie (if using cookies)
-    // Since we use Bearer token, simple window.open won't attach the auth header.
-    // Better way: fetch blob and create object URL.
+  const handleDownload = (fileId, fileName) => {
     client.get(`/storage/download/${fileId}`, { responseType: 'blob' })
-      .then(response => {
-        const url = window.URL.createObjectURL(new Blob([response.data]));
+      .then((res) => {
+        const url = window.URL.createObjectURL(new Blob([res.data]));
         const link = document.createElement('a');
         link.href = url;
-        const fileObj = files.find(f => f.id === fileId);
-        link.setAttribute('download', fileObj ? fileObj.original_filename : 'download');
+        link.setAttribute('download', fileName || 'download');
         document.body.appendChild(link);
         link.click();
         link.parentNode.removeChild(link);
+        toast.success("File downloaded successfully");
       })
-      .catch(() => toast.error("Download failed"));
+      .catch(() => toast.error("Failed to download file"));
   };
 
   const handleDelete = async (fileId) => {
-    if (!window.confirm("Delete this file?")) return;
-    try {
-      await client.delete(`/storage/files/${fileId}`);
-      toast.success("File deleted");
-      setFiles(files.filter(f => f.id !== fileId));
-    } catch (error) {
-      toast.error("Delete failed");
+    if (window.confirm("Permanently delete this file from cloud storage?")) {
+      try {
+        await client.delete(`/storage/files/${fileId}`);
+        toast.success("File deleted from cloud storage");
+        setFiles(files.filter(f => f.id !== fileId));
+      } catch (error) {
+        toast.error("Delete failed");
+      }
     }
   };
 
   const formatSize = (bytes) => {
-    if (bytes === 0) return '0 B';
+    if (!bytes || bytes === 0) return '0 B';
     const k = 1024;
     const sizes = ['B', 'KB', 'MB', 'GB'];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
@@ -91,74 +88,118 @@ const FilesPage = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
-      <div className="flex justify-between items-center border-b pb-4">
+    <div className="max-w-4xl mx-auto space-y-8">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-200 pb-5">
         <div>
-          <h1 className="text-2xl font-bold text-gray-800">My Health Files</h1>
-          <p className="text-gray-500 text-sm">Securely store your medical reports and progress pictures</p>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold border border-blue-200 mb-1">
+            <span>☁️</span> Object Storage Decoupling
+          </div>
+          <h1 className="text-3xl font-black text-slate-900">Cloud Health Records Vault</h1>
+          <p className="text-sm text-slate-500">
+            Securely upload blood test reports, clinical PDFs, and dietary logs with multi-tenant isolation.
+          </p>
+        </div>
+        <div className="pill-badge bg-emerald-50 text-emerald-700 border border-emerald-200">
+          <span>🔒</span> Row-Level Isolated
         </div>
       </div>
 
-      {/* Upload Area */}
-      <div 
-        className="border-2 border-dashed border-emerald-300 rounded-xl bg-emerald-50 p-8 text-center hover:bg-emerald-100 transition cursor-pointer"
+      {/* Upload Drop Zone */}
+      <div
         onClick={() => fileInputRef.current?.click()}
+        className="border-2 border-dashed border-emerald-300 rounded-3xl bg-gradient-to-br from-emerald-50/70 to-teal-50/40 p-8 sm:p-12 text-center hover:bg-emerald-100/50 hover:border-emerald-400 transition-all cursor-pointer group shadow-xs"
       >
-        <input 
-          type="file" 
-          ref={fileInputRef} 
-          onChange={handleFileChange} 
-          className="hidden" 
+        <input
+          type="file"
+          ref={fileInputRef}
+          onChange={handleFileChange}
+          className="hidden"
           accept="image/*,application/pdf"
         />
-        <div className="text-4xl mb-3">📁</div>
-        <h3 className="text-lg font-semibold text-emerald-800 mb-1">Click to Upload</h3>
-        <p className="text-sm text-emerald-600">Supports PDF, JPG, PNG (Max 10MB)</p>
-        
-        {uploading && (
-          <div className="mt-4 text-emerald-700 font-medium animate-pulse">
-            Uploading...
+        <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4 shadow-sm group-hover:scale-110 transition-transform">
+          ☁️
+        </div>
+        <h3 className="text-xl font-bold text-slate-800 mb-1">
+          Click to Upload Health Files
+        </h3>
+        <p className="text-sm text-slate-500 max-w-sm mx-auto mb-4">
+          Supported formats: <span className="font-semibold text-emerald-700">PDF, JPG, PNG</span> up to 10 MB.
+        </p>
+
+        {uploading ? (
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-600 text-white text-xs font-bold animate-pulse">
+            <span className="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+            Streaming to Cloud Object Vault...
           </div>
+        ) : (
+          <span className="btn-secondary text-xs px-4 py-2 bg-white">
+            Select Document from Device
+          </span>
         )}
       </div>
 
-      {/* File List */}
-      <div className="card">
-        <h3 className="font-semibold text-gray-700 mb-4">Uploaded Files ({files.length})</h3>
-        
+      {/* Files List */}
+      <div className="card space-y-4">
+        <div className="flex justify-between items-center border-b border-slate-100 pb-3">
+          <h3 className="font-bold text-slate-800 text-base flex items-center gap-2">
+            <span>📁</span> Stored Cloud Objects ({files.length})
+          </h3>
+          <span className="text-xs text-slate-400 font-medium">Decoupled from Relational DB</span>
+        </div>
+
         {loading ? (
-          <LoadingSpinner message="Loading files..." />
+          <LoadingSpinner message="Retrieving cloud file registry..." />
         ) : files.length === 0 ? (
-          <div className="text-center text-gray-500 py-8">No files uploaded yet.</div>
+          <div className="text-center py-12 text-slate-400 space-y-2">
+            <span className="text-4xl block">📂</span>
+            <p className="text-sm font-medium">No medical files uploaded yet.</p>
+            <p className="text-xs text-slate-400">Upload your PDF lab reports or dietary logs above.</p>
+          </div>
         ) : (
-          <div className="divide-y">
-            {files.map(file => (
-              <div key={file.id} className="py-4 flex items-center justify-between hover:bg-gray-50 px-2 -mx-2 rounded transition">
-                <div className="flex items-center gap-4">
-                  <div className="text-2xl">{file.content_type?.includes('pdf') ? '📄' : '🖼️'}</div>
-                  <div>
-                    <p className="font-medium text-gray-800 truncate max-w-xs md:max-w-md">{file.original_filename}</p>
-                    <p className="text-xs text-gray-500">
-                      {formatSize(file.file_size)} • Uploaded {new Date(file.uploaded_at).toLocaleDateString()}
-                    </p>
+          <div className="divide-y divide-slate-100">
+            {files.map((file) => {
+              const isPdf = file.content_type?.includes('pdf') || file.original_filename?.endsWith('.pdf');
+              return (
+                <div
+                  key={file.id}
+                  className="py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 hover:bg-slate-50/80 px-3 -mx-3 rounded-xl transition-colors"
+                >
+                  <div className="flex items-center gap-3.5">
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-xl shadow-2xs ${
+                      isPdf ? 'bg-rose-100 text-rose-600' : 'bg-blue-100 text-blue-600'
+                    }`}>
+                      {isPdf ? '📄' : '🖼️'}
+                    </div>
+                    <div>
+                      <p className="font-bold text-sm text-slate-800 truncate max-w-xs sm:max-w-md">
+                        {file.original_filename}
+                      </p>
+                      <p className="text-xs text-slate-400 flex items-center gap-2 mt-0.5">
+                        <span className="font-medium text-slate-500">{formatSize(file.file_size)}</span>
+                        <span>•</span>
+                        <span>Uploaded {new Date(file.uploaded_at).toLocaleDateString()}</span>
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
+                    <button
+                      onClick={() => handleDownload(file.id, file.original_filename)}
+                      className="btn-secondary text-xs py-1.5 px-3 hover:text-emerald-700 hover:border-emerald-300"
+                    >
+                      Download ⬇
+                    </button>
+                    <button
+                      onClick={() => handleDelete(file.id)}
+                      className="text-xs font-semibold text-rose-600 hover:text-rose-800 bg-rose-50 hover:bg-rose-100 py-1.5 px-3 rounded-xl transition-colors cursor-pointer"
+                    >
+                      Delete
+                    </button>
                   </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <button 
-                    onClick={() => handleDownload(file.id)}
-                    className="text-blue-600 hover:text-blue-800 text-sm font-medium bg-blue-50 px-3 py-1 rounded"
-                  >
-                    Download
-                  </button>
-                  <button 
-                    onClick={() => handleDelete(file.id)}
-                    className="text-red-600 hover:text-red-800 text-sm font-medium bg-red-50 px-3 py-1 rounded"
-                  >
-                    Delete
-                  </button>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>

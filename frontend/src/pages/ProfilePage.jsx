@@ -10,9 +10,9 @@ const ProfilePage = () => {
     age: '',
     height: '',
     weight: '',
-    sex: 'male',
-    activity_level: 'sedentary',
-    dietary_preference: 'any',
+    gender: 'male',
+    activity_level: 'moderate',
+    dietary_preference: 'vegetarian',
     goal: 'maintenance',
     allergies: ''
   });
@@ -22,9 +22,15 @@ const ProfilePage = () => {
       try {
         const res = await client.get('/profile');
         if (res.data) {
-          // Exclude id and user_id for form
           const { id, user_id, created_at, updated_at, ...profileData } = res.data;
-          setProfile(prev => ({ ...prev, ...profileData }));
+          setProfile(prev => ({
+            ...prev,
+            ...profileData,
+            gender: profileData.gender || profileData.sex || 'male',
+            allergies: Array.isArray(profileData.allergies) 
+              ? profileData.allergies.join(', ') 
+              : (profileData.allergies || '')
+          }));
         }
       } catch (error) {
         if (error.response?.status !== 404) {
@@ -41,7 +47,7 @@ const ProfilePage = () => {
     const { name, value, type } = e.target;
     setProfile({
       ...profile,
-      [name]: type === 'number' ? Number(value) : value
+      [name]: type === 'number' ? (value === '' ? '' : Number(value)) : value
     });
   };
 
@@ -49,8 +55,13 @@ const ProfilePage = () => {
     e.preventDefault();
     setSaving(true);
     try {
-      await client.put('/profile', profile);
-      toast.success("Profile saved successfully!");
+      const payload = {
+        ...profile,
+        gender: profile.gender,
+        sex: profile.gender,
+      };
+      await client.put('/profile', payload);
+      toast.success("Biometric profile synchronized with Cloud Database!");
     } catch (error) {
       toast.error(error.response?.data?.detail || "Failed to save profile");
     } finally {
@@ -58,98 +69,217 @@ const ProfilePage = () => {
     }
   };
 
-  if (loading) return <LoadingSpinner message="Loading profile..." />;
+  // Live BMI calculation
+  const calcBmi = () => {
+    if (profile.weight && profile.height) {
+      const hM = Number(profile.height) / 100;
+      if (hM > 0) {
+        return (Number(profile.weight) / (hM * hM)).toFixed(1);
+      }
+    }
+    return null;
+  };
+
+  const bmiVal = calcBmi();
+
+  if (loading) return <LoadingSpinner message="Fetching biometric records..." />;
 
   return (
-    <div className="max-w-2xl mx-auto">
-      <div className="card">
-        <h2 className="text-2xl font-bold mb-6 text-gray-800">Your Health Profile</h2>
-        <p className="text-gray-600 mb-8 text-sm">
-          This information helps our AI generate accurate and safe diet plans tailored just for you.
+    <div className="max-w-3xl mx-auto space-y-8">
+      {/* Header */}
+      <div className="border-b border-slate-200 pb-5">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold border border-emerald-200 mb-1">
+          <span>🧬</span> Metabolic Biometrics
+        </div>
+        <h1 className="text-3xl font-black text-slate-900">Your Health Profile</h1>
+        <p className="text-sm text-slate-500">
+          Used by the AI engine to calculate clinical BMR and TDEE caloric targets.
         </p>
-        
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            
-            {/* Basic Metrics */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Age (years)</label>
-              <input type="number" name="age" required min="1" max="120" className="input-field" value={profile.age} onChange={handleChange} />
-            </div>
-            
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Biological Sex</label>
-              <select name="sex" className="input-field" value={profile.sex} onChange={handleChange}>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-              </select>
-            </div>
-            
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Height (cm)</label>
-              <input type="number" name="height" required min="50" max="300" className="input-field" value={profile.height} onChange={handleChange} />
-            </div>
-            
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Weight (kg)</label>
-              <input type="number" name="weight" required min="20" max="300" step="0.1" className="input-field" value={profile.weight} onChange={handleChange} />
+      </div>
+
+      <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Core Biometrics Card */}
+        <div className="card space-y-6">
+          <div className="flex justify-between items-center border-b border-slate-100 pb-3">
+            <h2 className="text-base font-bold text-slate-800">Physical Metrics</h2>
+            {bmiVal && (
+              <span className="pill-badge bg-emerald-50 text-emerald-800 border border-emerald-200">
+                Live BMI: {bmiVal}
+              </span>
+            )}
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold uppercase tracking-wider text-slate-700">
+                Age (Years)
+              </label>
+              <input
+                type="number"
+                name="age"
+                value={profile.age}
+                onChange={handleChange}
+                placeholder="e.g. 25"
+                min="10"
+                max="120"
+                required
+                className="input-field"
+              />
             </div>
 
-            {/* Lifestyle & Goals */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Activity Level</label>
-              <select name="activity_level" className="input-field" value={profile.activity_level} onChange={handleChange}>
-                <option value="sedentary">Sedentary (little to no exercise)</option>
-                <option value="light">Light (exercise 1-3 days/week)</option>
-                <option value="moderate">Moderate (exercise 3-5 days/week)</option>
-                <option value="active">Active (exercise 6-7 days/week)</option>
-                <option value="very_active">Very Active (hard exercise daily)</option>
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold uppercase tracking-wider text-slate-700">
+                Biological Sex
+              </label>
+              <div className="grid grid-cols-2 gap-2">
+                {['male', 'female'].map((s) => (
+                  <button
+                    key={s}
+                    type="button"
+                    onClick={() => setProfile({ ...profile, gender: s })}
+                    className={`py-2.5 rounded-xl border text-xs font-bold capitalize transition-all cursor-pointer ${
+                      profile.gender === s
+                        ? 'border-emerald-600 bg-emerald-50 text-emerald-800 ring-2 ring-emerald-500/20'
+                        : 'border-slate-200 hover:bg-slate-50 text-slate-600'
+                    }`}
+                  >
+                    {s === 'male' ? '👨 Male' : '👩 Female'}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold uppercase tracking-wider text-slate-700">
+                Height (cm)
+              </label>
+              <input
+                type="number"
+                name="height"
+                value={profile.height}
+                onChange={handleChange}
+                placeholder="e.g. 175"
+                min="50"
+                max="260"
+                required
+                className="input-field"
+              />
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold uppercase tracking-wider text-slate-700">
+                Weight (kg)
+              </label>
+              <input
+                type="number"
+                step="0.1"
+                name="weight"
+                value={profile.weight}
+                onChange={handleChange}
+                placeholder="e.g. 70.0"
+                min="20"
+                max="300"
+                required
+                className="input-field"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Nutritional Goals & Habits Card */}
+        <div className="card space-y-6">
+          <div className="border-b border-slate-100 pb-3">
+            <h2 className="text-base font-bold text-slate-800">Dietary Preferences & Activity</h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold uppercase tracking-wider text-slate-700">
+                Activity Level
+              </label>
+              <select
+                name="activity_level"
+                value={profile.activity_level}
+                onChange={handleChange}
+                className="input-field cursor-pointer"
+              >
+                <option value="sedentary">Sedentary (Desk Job)</option>
+                <option value="light">Lightly Active (1-3 days/week)</option>
+                <option value="moderate">Moderately Active (3-5 days/week)</option>
+                <option value="active">Very Active (6-7 days/week)</option>
+                <option value="very_active">Extremely Active (Athletic)</option>
               </select>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Primary Goal</label>
-              <select name="goal" className="input-field" value={profile.goal} onChange={handleChange}>
-                <option value="weight_loss">Weight Loss</option>
-                <option value="maintenance">Maintenance</option>
-                <option value="muscle_gain">Muscle Gain</option>
-                <option value="fitness">General Fitness / Health</option>
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Dietary Preference</label>
-              <select name="dietary_preference" className="input-field" value={profile.dietary_preference} onChange={handleChange}>
-                <option value="any">Any / Omnivore</option>
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold uppercase tracking-wider text-slate-700">
+                Dietary Habit
+              </label>
+              <select
+                name="dietary_preference"
+                value={profile.dietary_preference}
+                onChange={handleChange}
+                className="input-field cursor-pointer"
+              >
                 <option value="vegetarian">Vegetarian</option>
                 <option value="vegan">Vegan</option>
-                <option value="pescatarian">Pescatarian</option>
-                <option value="keto">Keto</option>
-                <option value="paleo">Paleo</option>
+                <option value="non_vegetarian">Non-Vegetarian</option>
+                <option value="keto">Keto / Low-Carb</option>
               </select>
             </div>
-          </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Food Allergies / Dislikes</label>
-            <textarea 
-              name="allergies" 
-              rows="3" 
-              className="input-field" 
-              value={profile.allergies || ''} 
-              onChange={handleChange}
-              placeholder="e.g., Peanuts, shellfish, lactose intolerance, no mushrooms..."
-            ></textarea>
-            <p className="text-xs text-gray-500 mt-1">Leave blank if none.</p>
-          </div>
+            <div className="space-y-1.5 sm:col-span-2">
+              <label className="text-xs font-bold uppercase tracking-wider text-slate-700">
+                Target Objective
+              </label>
+              <div className="grid grid-cols-3 gap-3">
+                {[
+                  { id: 'weight_loss', label: 'Weight Loss' },
+                  { id: 'maintenance', label: 'Maintenance' },
+                  { id: 'muscle_gain', label: 'Muscle Gain' },
+                ].map((g) => (
+                  <button
+                    key={g.id}
+                    type="button"
+                    onClick={() => setProfile({ ...profile, goal: g.id })}
+                    className={`py-2 rounded-xl border text-xs font-bold capitalize transition-all cursor-pointer ${
+                      profile.goal === g.id
+                        ? 'border-emerald-600 bg-emerald-50 text-emerald-800 ring-2 ring-emerald-500/20'
+                        : 'border-slate-200 hover:bg-slate-50 text-slate-600'
+                    }`}
+                  >
+                    {g.label}
+                  </button>
+                ))}
+              </div>
+            </div>
 
-          <div className="pt-4 border-t border-gray-100 flex justify-end">
-            <button type="submit" className="btn-primary px-8" disabled={saving}>
-              {saving ? 'Saving...' : 'Save Profile'}
-            </button>
+            <div className="space-y-1.5 sm:col-span-2">
+              <label className="text-xs font-bold uppercase tracking-wider text-slate-700">
+                Permanent Allergies / Restrictions
+              </label>
+              <input
+                type="text"
+                name="allergies"
+                value={profile.allergies}
+                onChange={handleChange}
+                placeholder="e.g. peanuts, dairy, soy, gluten (comma separated)"
+                className="input-field"
+              />
+            </div>
           </div>
-        </form>
-      </div>
+        </div>
+
+        <div className="flex justify-end pt-2">
+          <button
+            type="submit"
+            disabled={saving}
+            className="btn-glow px-8 py-3 text-sm font-black shadow-md cursor-pointer"
+          >
+            {saving ? "Saving to Cloud..." : "Save Profile & Update Macros"}
+          </button>
+        </div>
+      </form>
     </div>
   );
 };
