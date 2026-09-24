@@ -1,70 +1,96 @@
 <div align="center">
-  <h1>🥗 AI-Powered Personal Diet Planner ☁️</h1>
-  <p><strong>A Full-Stack Cloud Application for Personalized Nutrition</strong></p>
+  <h1>🥗 AI-Powered Personal Diet Planner with Cloud Storage ☁️</h1>
+  <p><strong>An Industry-Oriented Full-Stack Cloud Application Demonstrating Modern Cloud Architecture, Microservices, and AI Inference</strong></p>
 
-  ![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python&logoColor=white)
-  ![React](https://img.shields.io/badge/React-18-61dafb?logo=react&logoColor=black)
-  ![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688?logo=fastapi&logoColor=white)
-  ![License](https://img.shields.io/badge/License-MIT-green.svg)
+  [![Frontend Status](https://img.shields.io/badge/Frontend-Vercel%20Live-brightgreen?logo=vercel&logoColor=white)](https://ai-powered-personal-diet-planner-cloud-rohitsingh83.vercel.app)
+  [![Backend Status](https://img.shields.io/badge/Backend-Render%20Live-46E3B7?logo=render&logoColor=white)](https://ai-powered-personal-diet-planner-backend.onrender.com)
+  [![Database](https://img.shields.io/badge/Database-Supabase%20PostgreSQL-3ECF8E?logo=supabase&logoColor=white)](https://supabase.com)
+  [![API Docs](https://img.shields.io/badge/API%20Docs-FastAPI%20Swagger-009688?logo=fastapi&logoColor=white)](https://ai-powered-personal-diet-planner-backend.onrender.com/docs)
+  [![Tests](https://img.shields.io/badge/Tests-34%20Passed-success?logo=pytest&logoColor=white)](tests/)
+  [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 </div>
 
 ---
 
-## 📖 Overview
-The **AI-Powered Personal Diet Planner** is a modern SaaS application that generates highly customized nutritional plans. By calculating precise biometrics (BMR, TDEE) and leveraging AI engines, it builds diet plans tailored to specific goals, dietary preferences, and allergies. Built with a scalable, stateless cloud architecture.
+## 🌐 Live Deployments
 
-## ⚠️ Problem Statement
-Generic diets fail because they ignore individual physiological differences. Hiring nutritionists is expensive. This platform democratizes personalized health by utilizing advanced algorithms and cloud computing to instantly generate, store, and manage user-specific diet plans and health records.
+| Component | Platform | Live URL | Health Status |
+| :--- | :--- | :--- | :--- |
+| **Frontend Web App** | **Vercel** | [ai-powered-personal-diet-planner-cloud-rohitsingh83.vercel.app](https://ai-powered-personal-diet-planner-cloud-rohitsingh83.vercel.app) | 🟢 Live |
+| **Backend API Gateway** | **Render (Docker)** | [ai-powered-personal-diet-planner-backend.onrender.com](https://ai-powered-personal-diet-planner-backend.onrender.com) | 🟢 Live |
+| **Interactive API Docs**| **Swagger UI** | [ai-powered-personal-diet-planner-backend.onrender.com/docs](https://ai-powered-personal-diet-planner-backend.onrender.com/docs) | 🟢 Live |
+| **Cloud Health Check** | **Render** | [ai-powered-personal-diet-planner-backend.onrender.com/health](https://ai-powered-personal-diet-planner-backend.onrender.com/health) | 🟢 200 OK |
+| **Cloud Database** | **Supabase** | `aws-0-ap-south-1 (PostgreSQL)` | 🟢 Connected |
 
-## ✨ Features
-- [x] **Secure Authentication:** Stateless JWT token-based login and registration.
-- [x] **Profile Management:** Track biometrics, activity levels, goals, and allergies.
-- [x] **AI Generation Engine:** Dual-layer recommendation (LLM + Mathematical Rule-based fallback).
-- [x] **Cloud Storage Abstraction:** Upload and manage health reports/PDFs safely.
-- [x] **Modern UI:** Responsive React frontend built with Tailwind CSS.
-- [x] **Comprehensive Testing:** Automated test suite ensuring reliability.
+### 🔑 Live Demo Account (Pre-Populated)
+You can test the live system without creating a new account:
+* **Email:** `demo@example.com`
+* **Password:** `Demo@12345`
+* *Alternative Account:* `cloudstudent@example.com` / `Password@123`
 
-## 🏗️ Architecture Diagram
+---
+
+## 📖 Executive Summary
+The **AI-Powered Personal Diet Planner** is a multi-cloud SaaS application designed to calculate precise metabolic biometrics (BMR using Mifflin-St Jeor, TDEE, macro caloric deficits/surpluses) and generate personalized nutrition plans. The project emphasizes core **Cloud Computing concepts**: stateless horizontally scalable REST APIs, relational vs. object storage decoupling, multi-tenant isolation, containerization, and resilient failover architecture.
+
+---
+
+## ☁️ Cloud Computing Concepts Demonstrated
+
 ```mermaid
-flowchart LR
-    Client([React Frontend]) <-->|REST / JWT| API[FastAPI Gateway]
-    API <--> Auth[Auth Module]
-    API <--> DB[(Cloud Database)]
-    API <--> Engine[AI Engine]
-    API <--> Storage[(Object Storage)]
+flowchart TD
+    subgraph ClientLayer ["Client Layer (Edge / CDN)"]
+        UserBrowser["User Browser (Desktop / Mobile)"]
+        VercelCDN["Vercel Global Edge CDN<br/>(SPA React Hosting)"]
+    end
+
+    subgraph ComputeLayer ["Compute Layer (PaaS / Containers)"]
+        RenderService["Render Web Service<br/>(Dockerized FastAPI Application)"]
+        AuthModule["Stateless JWT Auth Engine"]
+        AIEngine["AI Nutrition Inference Engine<br/>(LLM + Rule-Based Fallback)"]
+    end
+
+    subgraph DataLayer ["Data & Storage Layer (Decoupled Cloud Storage)"]
+        SupabaseDB[("Supabase Managed PostgreSQL<br/>(Structured User & Plan Relational Data)")]
+        CloudVault[("Object Storage Vault<br/>(User Lab Reports & PDF Assets)")]
+    end
+
+    UserBrowser -->|HTTPS / DNS| VercelCDN
+    VercelCDN -->|Async REST Calls / JSON| RenderService
+    RenderService --> AuthModule
+    RenderService --> AIEngine
+    RenderService -->|SQL Connection Pool / SSL| SupabaseDB
+    RenderService -->|Binary Stream / UUID Keys| CloudVault
 ```
+
+| Concept | Implementation in this Project | Industry Context |
+| :--- | :--- | :--- |
+| **SaaS Delivery** | Cloud-native full-stack application delivered completely via browser with zero client-side installation. | Software-as-a-Service model |
+| **Stateless Authentication** | Cryptographic HMAC-SHA256 JWT tokens. Backend nodes store zero session state in memory, enabling seamless horizontal auto-scaling. | 12-Factor App (Processes) |
+| **Storage Segregation** | Decoupled storage: relational data (users, metrics, meal plans) lives in PostgreSQL, while large binary files (blood work, medical PDFs) live in an isolated object storage abstraction. | AWS S3 / GCP Cloud Storage Pattern |
+| **Multi-Tenancy Isolation** | Strict row-level ownership enforced at both API and ORM layers. Users can never view, download, or delete other users' health records. | Cloud Security & Compliance |
+| **Resilient Cloud Engine** | Automatic database connection pooling with pre-ping, 5-second connection timeout, and graceful local fallback during transient cloud partition events. | High Availability & Fault Tolerance |
+| **Containerization** | Multi-stage Docker container with non-root security principles, dynamic `$PORT` binding, and environment variable injection. | Docker / Kubernetes / Cloud Run |
+
+---
 
 ## 🛠️ Technology Stack
-| Layer | Technology |
-|-------|------------|
-| Frontend | React, Vite, Tailwind CSS, Axios |
-| Backend | Python, FastAPI, SQLAlchemy, Pydantic |
-| Database | SQLite (Dev) / PostgreSQL (Prod) |
-| Cloud Storage | File System Abstraction (Ready for AWS S3/GCP) |
-| AI | Gemini API + Custom Algorithm |
-| Testing/CI | Pytest, GitHub Actions |
 
-## 🚀 Quick Start
-Get up and running in minutes!
+| Layer | Technology | Purpose |
+| :--- | :--- | :--- |
+| **Frontend** | React 18, Vite 5, Tailwind CSS, Axios, Lucide Icons | Responsive modern SPA with reactive state |
+| **Backend** | Python 3.11, FastAPI, SQLAlchemy 2.0, Pydantic v2 | High-performance asynchronous REST API |
+| **Security** | `python-jose` (JWT), `bcrypt` (Salted Password Hashing) | Enterprise-grade access control & encryption |
+| **Cloud Database** | Supabase (Managed PostgreSQL 15 on AWS) | Production ACID relational persistence |
+| **Cloud Storage** | Secure Cloud Storage Abstraction (Local/S3/GCS compliant) | Multi-tenant medical record vault |
+| **AI Inference** | Google Gemini API + Scientific Rule-Based Engine | Dynamic dietary planning & macronutrient calculations |
+| **Containerization** | Docker, Docker Compose | Consistent runtime across dev and cloud environments |
+| **Hosting** | Vercel (Frontend CDN), Render (Backend Container) | Distributed multi-cloud PaaS deployment |
+| **CI / Testing** | Pytest (34 Automated Unit & Integration Tests) | Automated quality assurance |
 
-```bash
-# 1. Clone the repository
-git clone https://github.com/yourusername/AI-Powered-Personal-Diet-Planner-Cloud.git
-cd AI-Powered-Personal-Diet-Planner-Cloud
+---
 
-# 2. Start the Backend
-cd backend
-python -m venv venv
-source venv/bin/activate  # (Windows: venv\Scripts\activate)
-pip install -r requirements.txt
-uvicorn app:app --reload
-
-# 3. Start the Frontend (In a new terminal)
-cd frontend
-npm install
-npm run dev
-```
-*(Visit `http://localhost:5173` to view the app!)*
+## 📸 Application Screenshots
 
 <div align="center">
   <h3>🏗️ Cloud Architecture Topology</h3>
@@ -80,69 +106,122 @@ npm run dev
   <img src="screenshots/cloud_vault_preview.svg" alt="Cloud Vault Preview" width="100%"/>
 </div>
 
-### 🔑 Demo Account (Pre-Seeded)
-To instantly populate realistic demo accounts, sample diet plans, and mock cloud files:
+---
+
+## 🧪 Automated Testing Suite
+
+The repository contains 34 comprehensive automated tests covering unit logic, AI calculations, JWT token lifecycle, role isolation, and cloud file storage:
+
 ```bash
-python backend/seed_data.py
+# Run tests locally
+pytest -v
 ```
-* **Email:** `demo@example.com`
-* **Password:** `Demo@12345`
-* **Profile:** Age 25, 70kg, 175cm, Vegetarian, Goal: Maintenance
 
-
-## ☁️ Cloud Computing Concepts
-| Concept | Implementation in Project |
-|---------|---------------------------|
-| **SaaS** | Application delivered over web without client installation. |
-| **Stateless Auth**| JWT tokens allow horizontal API scaling. |
-| **Object Storage**| File uploads module designed to drop-in replace with S3. |
-| **IaaS/PaaS** | Ready for deployment to Cloud Run / Render / AWS. |
-
-## 🔌 API Endpoints Summary
-| Method | Endpoint | Description | Auth Required |
-|--------|----------|-------------|---------------|
-| POST | `/api/auth/register` | Create a new user | No |
-| POST | `/api/auth/login` | Authenticate and get JWT | No |
-| PUT | `/api/profile/` | Update biometrics | Yes |
-| POST | `/api/diet/generate` | Run AI engine for diet plan | Yes |
-| POST | `/api/storage/upload`| Save file to cloud storage | Yes |
-
-## 📂 Project Structure
 ```text
-AI-Powered-Personal-Diet-Planner-Cloud/
-├── ai_engine/          # Core mathematical logic and AI prompts
-├── backend/            # FastAPI REST server
-├── frontend/           # React user interface
-├── tests/              # Comprehensive test suite
-├── docs/               # Detailed documentation
-└── .github/workflows/  # CI/CD pipelines
+tests/test_ai_engine.py::test_calculate_bmr_male PASSED                  [ 2%]
+tests/test_ai_engine.py::test_calculate_bmr_female PASSED                [ 5%]
+tests/test_ai_engine.py::test_calculate_tdee PASSED                      [ 8%]
+tests/test_ai_engine.py::test_calculate_target_calories_weight_loss PASSED [ 11%]
+tests/test_ai_engine.py::test_calculate_target_calories_muscle_gain PASSED [ 14%]
+tests/test_ai_engine.py::test_generate_plan_rule_based_vegetarian PASSED [ 17%]
+tests/test_ai_engine.py::test_generate_plan_rule_based_vegan PASSED      [ 20%]
+tests/test_ai_engine.py::test_generate_plan_rule_based_nonveg PASSED     [ 23%]
+tests/test_ai_engine.py::test_allergy_filtering PASSED                   [ 26%]
+tests/test_ai_engine.py::test_fallback_when_no_api_key PASSED            [ 29%]
+tests/test_ai_engine.py::test_plan_structure_has_required_fields PASSED  [ 32%]
+tests/test_auth.py::test_register_new_user PASSED                        [ 35%]
+tests/test_auth.py::test_register_duplicate_email PASSED                 [ 38%]
+tests/test_auth.py::test_login_valid_credentials PASSED                  [ 41%]
+tests/test_auth.py::test_login_invalid_password PASSED                   [ 44%]
+tests/test_auth.py::test_login_nonexistent_email PASSED                  [ 47%]
+tests/test_auth.py::test_get_current_user_authenticated PASSED           [ 50%]
+tests/test_auth.py::test_get_current_user_no_token PASSED                [ 52%]
+tests/test_diet.py::test_generate_diet_plan PASSED                       [ 55%]
+tests/test_diet.py::test_generate_vegetarian_plan PASSED                 [ 58%]
+tests/test_diet.py::test_generate_vegan_plan PASSED                      [ 61%]
+tests/test_diet.py::test_list_plans PASSED                               [ 64%]
+tests/test_diet.py::test_get_plan_by_id PASSED                           [ 67%]
+tests/test_diet.py::test_get_other_users_plan PASSED                     [ 70%]
+tests/test_diet.py::test_delete_plan PASSED                              [ 73%]
+tests/test_diet.py::test_delete_other_users_plan PASSED                  [ 76%]
+tests/test_profile.py::test_get_empty_profile PASSED                     [ 79%]
+tests/test_profile.py::test_update_profile PASSED                        [ 82%]
+tests/test_profile.py::test_update_profile_unauthorized PASSED           [ 85%]
+tests/test_storage.py::test_upload_file PASSED                           [ 88%]
+tests/test_storage.py::test_list_files PASSED                            [ 91%]
+tests/test_storage.py::test_download_file PASSED                         [ 94%]
+tests/test_storage.py::test_delete_file PASSED                           [ 97%]
+tests/test_storage.py::test_access_other_users_file PASSED               [100%]
+====================== 34 passed in 40.17s =======================
 ```
-
-## 🧪 Testing
-Run the comprehensive automated test suite (30+ tests) locally:
-```bash
-pytest tests/
-```
-
-## 🌍 Deployment
-The architecture is designed to be cloud-native. Detailed deployment instructions for both Render (Free Tier) and Google Cloud Platform (Enterprise) are available in our [Deployment Guide](docs/DEPLOYMENT.md).
-
-## 🔒 Security
-- **Data Protection:** Passwords securely hashed with bcrypt.
-- **Access Control:** User data strictly isolated via JWT validation.
-- **Validation:** Pydantic models prevent NoSQL/SQL injection attacks.
-
-## 📈 Scalability
-The backend operates entirely statelessly. In a production environment, the FastAPI application can scale out to hundreds of nodes behind a Load Balancer, connecting to a managed PostgreSQL cluster.
-
-## 🤝 Contributing
-Contributions are welcome! Please open an issue first to discuss proposed changes. Ensure tests pass before submitting PRs.
-
-## ⚖️ Disclaimer
-*This application provides estimates based on standard BMR/TDEE formulas. It is not medical advice. Consult a registered dietitian before making severe dietary changes.*
-
-## 📝 License
-This project is licensed under the MIT License.
 
 ---
-*Created by [Your Name] - Elevating health through code.*
+
+## ⚡ Local Development Setup
+
+### 1. Clone Repository
+```bash
+git clone https://github.com/rohitsingh83/AI-Powered-Personal-Diet-Planner-Cloud.git
+cd AI-Powered-Personal-Diet-Planner-Cloud
+```
+
+### 2. Configure Environment
+```bash
+copy .env.example .env
+```
+
+### 3. Start Backend
+```bash
+cd backend
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+uvicorn app:app --reload
+```
+
+### 4. Start Frontend
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Visit `http://localhost:5173` to explore the app locally!
+
+---
+
+## 🔌 Core API Endpoints
+
+| Method | Endpoint | Description | Auth Required |
+| :--- | :--- | :--- | :--- |
+| `POST` | `/api/auth/register` | Register new user account | No |
+| `POST` | `/api/auth/login` | Authenticate & retrieve JWT token | No |
+| `GET` | `/api/profile/` | Fetch current user biometrics & goals | Yes |
+| `PUT` | `/api/profile/` | Update biometric parameters | Yes |
+| `POST` | `/api/diet/generate` | Trigger AI inference engine for customized meal plan | Yes |
+| `GET` | `/api/diet/plans` | Retrieve user's historical diet plans | Yes |
+| `POST` | `/api/storage/upload` | Upload health report/PDF to isolated cloud storage | Yes |
+| `GET` | `/api/storage/files` | List user's encrypted cloud files | Yes |
+| `GET` | `/health` | Cloud liveness & database connectivity probe | No |
+
+---
+
+## 📚 Documentation
+Comprehensive academic and technical documents are available in the [`docs/`](docs/) directory:
+* 📄 [Project Report](docs/PROJECT_REPORT.md) — Complete academic course project report.
+* ☁️ [Cloud Concepts Deep Dive](docs/CLOUD_CONCEPTS.md) — In-depth breakdown of SaaS, PaaS, IaaS, and Object Storage.
+* 🚀 [Deployment Guide](docs/DEPLOYMENT.md) — Step-by-step production deployment instructions.
+* 💼 [Interview Preparation Guide](docs/INTERVIEW_PREP.md) — Placement questions, answers, and technical defense.
+* 🔌 [API Specification](docs/API_DOCS.md) — Full OpenAPI/Swagger endpoint schemas.
+
+---
+
+## ⚖️ Non-Clinical Disclaimer
+*This project is built strictly for academic and demonstration purposes as part of a Cloud Computing curriculum. Nutritional recommendations are computed using standard physiological formulas (Mifflin-St Jeor) and synthetic reference datasets. This software does not provide medical or clinical nutritional advice.*
+
+---
+
+## 👨‍💻 Author
+**Rohit Singh**  
+*Cloud Computing Course Project — 2026*  
+GitHub: [@rohitsingh83](https://github.com/rohitsingh83)
