@@ -1,8 +1,13 @@
-import axios from 'react'; // wait I need to import axios from axios
-import axiosInstance from 'axios';
+import axios from 'axios';
 
-const client = axiosInstance.create({
-  baseURL: '/api',
+// Dynamically use VITE_API_URL in production (Vercel) or fallback to local /api proxy
+const rawApiUrl = import.meta.env.VITE_API_URL;
+const baseURL = rawApiUrl
+  ? `${rawApiUrl.replace(/\/$/, '')}/api`
+  : '/api';
+
+const client = axios.create({
+  baseURL: baseURL,
   headers: {
     'Content-Type': 'application/json',
   },
