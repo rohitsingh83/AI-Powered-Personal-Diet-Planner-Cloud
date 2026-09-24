@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" width="100%" height="100%" style="background:#f8fafc; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+  <defs>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.08" />
+    </filter>
+  </defs>
+
+  <!-- Navbar -->
+  <rect x="0" y="0" width="1000" height="60" fill="#ffffff" stroke="#e2e8f0" />
+  <circle cx="45" cy="30" r="14" fill="#10b981" />
+  <text x="45" y="35" text-anchor="middle" fill="#ffffff" font-size="14">🥗</text>
+  <text x="70" y="36" fill="#0f172a" font-size="16" font-weight="700">NutriCloud <tspan fill="#10b981" font-weight="400">AI</tspan></text>
+  <text x="500" y="35" fill="#64748b" font-size="13">Dashboard</text>
+  <text x="610" y="35" fill="#64748b" font-size="13">Generate Plan</text>
+  <text x="730" y="35" fill="#10b981" font-size="13" font-weight="700">Cloud Storage Vault</text>
+  <text x="890" y="35" fill="#0f172a" font-size="13" font-weight="600">👤 Demo User</text>
+
+  <!-- Title & Upload Button -->
+  <text x="60" y="105" fill="#0f172a" font-size="24" font-weight="800">Cloud Storage Vault ☁️</text>
+  <text x="60" y="128" fill="#64748b" font-size="13">Tenant-isolated health records, lab reports, and diet export PDFs with Presigned URL access</text>
+
+  <!-- Upload Drag and Drop Zone -->
+  <g transform="translate(60, 150)">
+    <rect width="880" height="110" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="6,4" filter="url(#shadow)" />
+    <circle cx="440" cy="40" r="18" fill="#ecfdf5" />
+    <text x="440" y="46" text-anchor="middle" fill="#10b981" font-size="16">⬆️</text>
+    <text x="440" y="75" text-anchor="middle" fill="#0f172a" font-size="13" font-weight="600">Drag and drop health lab reports, meal photos, or fitness PDFs here</text>
+    <text x="440" y="93" text-anchor="middle" fill="#94a3b8" font-size="11">Supports PDF, PNG, JPG, JSON (Max 15MB) • Objects prefixed with user_id</text>
+  </g>
+
+  <!-- Vault File Table -->
+  <g transform="translate(60, 280)">
+    <rect width="880" height="280" rx="10" fill="#ffffff" stroke="#e2e8f0" filter="url(#shadow)" />
+    
+    <!-- Table Header -->
+    <rect x="0" y="0" width="880" height="42" rx="10" fill="#f8fafc" />
+    <text x="30" y="26" fill="#64748b" font-size="11" font-weight="700">OBJECT NAME</text>
+    <text x="340" y="26" fill="#64748b" font-size="11" font-weight="700">CLOUD KEY / PREFIX</text>
+    <text x="560" y="26" fill="#64748b" font-size="11" font-weight="700">SIZE</text>
+    <text x="660" y="26" fill="#64748b" font-size="11" font-weight="700">SECURITY</text>
+    <text x="800" y="26" fill="#64748b" font-size="11" font-weight="700">ACTION</text>
+
+    <!-- Row 1 -->
+    <g transform="translate(0, 42)">
+      <line x1="0" y1="0" x2="880" y2="0" stroke="#f1f5f9" />
+      <text x="30" y="32" font-size="16">📄</text>
+      <text x="56" y="30" fill="#0f172a" font-size="13" font-weight="600">blood_panel_2026.pdf</text>
+      <text x="56" y="44" fill="#94a3b8" font-size="10">Clinical lipid &amp; glucose panel</text>
+      <text x="340" y="32" fill="#475569" font-size="11" font-family="monospace">user_demo123/a1b2_blood.pdf</text>
+      <text x="560" y="32" fill="#475569" font-size="12">2.4 MB</text>
+      <rect x="660" y="17" width="95" height="22" rx="4" fill="#ecfdf5" stroke="#a7f3d0" />
+      <text x="707" y="32" text-anchor="middle" fill="#065f46" font-size="10" font-weight="600">Presigned 15m</text>
+      <rect x="790" y="17" width="65" height="22" rx="4" fill="#2563eb" />
+      <text x="822" y="32" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="600">Download</text>
+    </g>
+
+    <!-- Row 2 -->
+    <g transform="translate(0, 102)">
+      <line x1="0" y1="0" x2="880" y2="0" stroke="#f1f5f9" />
+      <text x="30" y="32" font-size="16">📊</text>
+      <text x="56" y="30" fill="#0f172a" font-size="13" font-weight="600">nutrition_log_week1.json</text>
+      <text x="56" y="44" fill="#94a3b8" font-size="10">Aggregated daily macros &amp; water tracking</text>
+      <text x="340" y="32" fill="#475569" font-size="11" font-family="monospace">user_demo123/c3d4_log.json</text>
+      <text x="560" y="32" fill="#475569" font-size="12">48 KB</text>
+      <rect x="660" y="17" width="95" height="22" rx="4" fill="#ecfdf5" stroke="#a7f3d0" />
+      <text x="707" y="32" text-anchor="middle" fill="#065f46" font-size="10" font-weight="600">Presigned 15m</text>
+      <rect x="790" y="17" width="65" height="22" rx="4" fill="#2563eb" />
+      <text x="822" y="32" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="600">Download</text>
+    </g>
+
+    <!-- Row 3 -->
+    <g transform="translate(0, 162)">
+      <line x1="0" y1="0" x2="880" y2="0" stroke="#f1f5f9" />
+      <text x="30" y="32" font-size="16">🥗</text>
+      <text x="56" y="30" fill="#0f172a" font-size="13" font-weight="600">diet_plan_maintenance.json</text>
+      <text x="56" y="44" fill="#94a3b8" font-size="10">AI-generated 3-day meal itinerary export</text>
+      <text x="340" y="32" fill="#475569" font-size="11" font-family="monospace">user_demo123/e5f6_plan.json</text>
+      <text x="560" y="32" fill="#475569" font-size="12">18 KB</text>
+      <rect x="660" y="17" width="95" height="22" rx="4" fill="#ecfdf5" stroke="#a7f3d0" />
+      <text x="707" y="32" text-anchor="middle" fill="#065f46" font-size="10" font-weight="600">Presigned 15m</text>
+      <rect x="790" y="17" width="65" height="22" rx="4" fill="#2563eb" />
+      <text x="822" y="32" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="600">Download</text>
+    </g>
+
+    <!-- Table Footer Security Note -->
+    <rect x="0" y="235" width="880" height="45" rx="0" fill="#f0fdf4" />
+    <text x="30" y="262" fill="#166534" font-size="11" font-weight="600">🔒 Multi-Tenant Zero-Trust Isolation: No user can access or view files belonging to another tenant prefix.</text>
+  </g>
+</svg>

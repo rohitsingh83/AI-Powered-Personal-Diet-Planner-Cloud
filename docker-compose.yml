@@ -1,0 +1,46 @@
+# ============================================================
+# Docker Compose — AI-Powered Personal Diet Planner
+# ============================================================
+# Usage:
+#   docker-compose up --build        (start both services)
+#   docker-compose down              (stop everything)
+# ============================================================
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: diet-planner-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - SECRET_KEY=${SECRET_KEY:-super-secret-dev-key-change-me}
+      - DATABASE_URL=sqlite:///./diet_planner.db
+      - STORAGE_PATH=/app/storage
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - FRONTEND_URL=http://localhost:3000
+    volumes:
+      - backend-storage:/app/storage
+      - backend-db:/app
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: diet-planner-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  backend-storage:
+  backend-db:

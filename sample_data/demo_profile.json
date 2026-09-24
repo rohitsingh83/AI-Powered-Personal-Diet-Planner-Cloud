@@ -1,0 +1,14 @@
+{
+  "demo_user": {
+    "name": "Demo User",
+    "email": "demo@example.com",
+    "password": "Demo@12345",
+    "age": 25,
+    "height": 170,
+    "weight": 70,
+    "activity_level": "moderate",
+    "dietary_preference": "vegetarian",
+    "goal": "maintenance",
+    "allergies": ["peanuts"]
+  }
+}

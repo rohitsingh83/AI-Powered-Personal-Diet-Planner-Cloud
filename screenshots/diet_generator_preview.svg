@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" width="100%" height="100%" style="background:#f8fafc; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+  <defs>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.08" />
+    </filter>
+  </defs>
+
+  <!-- Navbar -->
+  <rect x="0" y="0" width="1000" height="60" fill="#ffffff" stroke="#e2e8f0" />
+  <circle cx="45" cy="30" r="14" fill="#10b981" />
+  <text x="45" y="35" text-anchor="middle" fill="#ffffff" font-size="14">🥗</text>
+  <text x="70" y="36" fill="#0f172a" font-size="16" font-weight="700">NutriCloud <tspan fill="#10b981" font-weight="400">AI</tspan></text>
+  <text x="500" y="35" fill="#64748b" font-size="13">Dashboard</text>
+  <text x="610" y="35" fill="#10b981" font-size="13" font-weight="700">Generate Plan</text>
+  <text x="730" y="35" fill="#64748b" font-size="13">Cloud Storage Vault</text>
+  <text x="890" y="35" fill="#0f172a" font-size="13" font-weight="600">👤 Demo User</text>
+
+  <!-- Title -->
+  <text x="60" y="105" fill="#0f172a" font-size="24" font-weight="800">Generate AI Diet Plan 🤖</text>
+  <text x="60" y="128" fill="#64748b" font-size="13">Dual-engine inference with automatic BMR/TDEE calculation and allergen avoidance</text>
+
+  <!-- Left Form Box -->
+  <g transform="translate(60, 150)">
+    <rect width="420" height="410" rx="10" fill="#ffffff" stroke="#e2e8f0" filter="url(#shadow)" />
+    <text x="24" y="32" fill="#0f172a" font-size="15" font-weight="700">1. Biometrics &amp; Diet Parameters</text>
+
+    <!-- Dietary Pref Field -->
+    <text x="24" y="65" fill="#334155" font-size="11" font-weight="600">DIETARY PREFERENCE</text>
+    <rect x="24" y="75" width="372" height="36" rx="6" fill="#f8fafc" stroke="#cbd5e1" />
+    <text x="36" y="98" fill="#0f172a" font-size="12">Vegetarian (Lacto-Ovo)</text>
+
+    <!-- Goal Field -->
+    <text x="24" y="130" fill="#334155" font-size="11" font-weight="600">HEALTH GOAL</text>
+    <rect x="24" y="140" width="372" height="36" rx="6" fill="#f8fafc" stroke="#cbd5e1" />
+    <text x="36" y="163" fill="#0f172a" font-size="12">Maintenance (Keep Current Composition)</text>
+
+    <!-- Activity Level Field -->
+    <text x="24" y="195" fill="#334155" font-size="11" font-weight="600">ACTIVITY LEVEL</text>
+    <rect x="24" y="205" width="372" height="36" rx="6" fill="#f8fafc" stroke="#cbd5e1" />
+    <text x="36" y="228" fill="#0f172a" font-size="12">Moderate (Exercise 3-5 days/week)</text>
+
+    <!-- Allergies Checkboxes -->
+    <text x="24" y="260" fill="#334155" font-size="11" font-weight="600">ALLERGY EXCLUSIONS</text>
+    <rect x="24" y="270" width="80" height="26" rx="4" fill="#fee2e2" stroke="#fca5a5" />
+    <text x="64" y="287" text-anchor="middle" fill="#991b1b" font-size="10" font-weight="600">✓ Peanuts</text>
+
+    <rect x="112" y="270" width="70" height="26" rx="4" fill="#f1f5f9" stroke="#cbd5e1" />
+    <text x="147" y="287" text-anchor="middle" fill="#64748b" font-size="10">Dairy</text>
+
+    <rect x="190" y="270" width="70" height="26" rx="4" fill="#f1f5f9" stroke="#cbd5e1" />
+    <text x="225" y="287" text-anchor="middle" fill="#64748b" font-size="10">Gluten</text>
+
+    <!-- Submit Button -->
+    <rect x="24" y="335" width="372" height="42" rx="8" fill="#10b981" />
+    <text x="210" y="361" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="700">✨ Generate Personalized Plan</text>
+  </g>
+
+  <!-- Right Inference Visualization -->
+  <g transform="translate(510, 150)">
+    <rect width="430" height="410" rx="10" fill="#ffffff" stroke="#e2e8f0" filter="url(#shadow)" />
+    <text x="24" y="32" fill="#0f172a" font-size="15" font-weight="700">2. Real-Time Cloud Inference</text>
+
+    <!-- Engine Indicator Badge -->
+    <rect x="24" y="48" width="160" height="26" rx="13" fill="#ecfdf5" stroke="#a7f3d0" />
+    <circle cx="36" cy="61" r="5" fill="#10b981" />
+    <text x="48" y="65" fill="#065f46" font-size="11" font-weight="600">Dual-Engine Active</text>
+
+    <!-- Target Calories -->
+    <rect x="24" y="85" width="382" height="60" rx="8" fill="#f0fdf4" stroke="#bbf7d0" />
+    <text x="40" y="110" fill="#166534" font-size="11" font-weight="700">CALCULATED DAILY TARGET</text>
+    <text x="40" y="133" fill="#15803d" font-size="20" font-weight="900">2,150 kcal/day <tspan font-size="11" font-weight="400">(BMR: 1,642 • TDEE: 2,546)</tspan></text>
+
+    <!-- Meal Card 1 -->
+    <rect x="24" y="155" width="382" height="65" rx="6" fill="#f8fafc" stroke="#e2e8f0" />
+    <text x="36" y="177" fill="#0f172a" font-size="12" font-weight="700">🥣 Breakfast: Oats Porridge with Milk &amp; Banana</text>
+    <text x="36" y="196" fill="#64748b" font-size="11">Calories: 310 kcal • Protein: 12g • Carbs: 52g • Fat: 7g</text>
+    <text x="36" y="210" fill="#10b981" font-size="10" font-weight="600">Tags: high-fiber, whole-grain</text>
+
+    <!-- Meal Card 2 -->
+    <rect x="24" y="228" width="382" height="65" rx="6" fill="#f8fafc" stroke="#e2e8f0" />
+    <text x="36" y="250" fill="#0f172a" font-size="12" font-weight="700">🥗 Lunch: Grilled Vegetable Wrap with Hummus</text>
+    <text x="36" y="269" fill="#64748b" font-size="11">Calories: 380 kcal • Protein: 12g • Carbs: 48g • Fat: 14g</text>
+    <text x="36" y="283" fill="#10b981" font-size="10" font-weight="600">Tags: balanced, quick</text>
+
+    <!-- Meal Card 3 -->
+    <rect x="24" y="301" width="382" height="65" rx="6" fill="#f8fafc" stroke="#e2e8f0" />
+    <text x="36" y="323" fill="#0f172a" font-size="12" font-weight="700">🍲 Dinner: Palak Paneer with Whole Wheat Roti</text>
+    <text x="36" y="342" fill="#64748b" font-size="11">Calories: 420 kcal • Protein: 22g • Carbs: 38g • Fat: 20g</text>
+    <text x="36" y="356" fill="#10b981" font-size="10" font-weight="600">Tags: iron-rich, high-protein</text>
+
+    <!-- Fallback Note -->
+    <text x="24" y="392" fill="#94a3b8" font-size="10">⚡ Automatic failover to local constraint solver if LLM quota exceeded.</text>
+  </g>
+</svg>
