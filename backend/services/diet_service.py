@@ -11,9 +11,14 @@ from models.diet_plan import DietPlan
 from models.user import User
 from config import settings
 
-# Import AI Engine from project root
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
-from ai_engine.diet_engine import generate_diet_plan
+# Import AI Engine from local backend or project root
+try:
+    from ai_engine.diet_engine import generate_diet_plan
+except ImportError:
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
+    from ai_engine.diet_engine import generate_diet_plan
+
 
 
 def generate_plan(db: Session, user: User, preferences_dict: dict) -> DietPlan:

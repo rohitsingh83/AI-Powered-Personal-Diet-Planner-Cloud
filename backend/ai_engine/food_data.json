@@ -1,0 +1,115 @@
+{
+  "foods": {
+    "vegetarian": [
+      {"id": "oats_porridge", "name": "Oats Porridge with Milk", "category": "breakfast", "per_serving": {"calories": 310, "protein": 12, "carbs": 52, "fat": 7, "fiber": 5}, "serving_size": "1 bowl (250g)", "ingredients": ["rolled oats", "milk", "honey", "banana", "almonds"], "tags": ["high-fiber", "whole-grain"]},
+      {"id": "veggie_upma", "name": "Vegetable Upma", "category": "breakfast", "per_serving": {"calories": 280, "protein": 8, "carbs": 45, "fat": 8, "fiber": 4}, "serving_size": "1 plate (200g)", "ingredients": ["semolina", "mixed vegetables", "mustard seeds", "curry leaves", "oil"], "tags": ["indian", "savory"]},
+      {"id": "moong_dal_chilla", "name": "Moong Dal Chilla", "category": "breakfast", "per_serving": {"calories": 220, "protein": 14, "carbs": 30, "fat": 5, "fiber": 3}, "serving_size": "2 pieces", "ingredients": ["moong dal", "onion", "green chili", "ginger", "spices"], "tags": ["high-protein", "indian"]},
+      {"id": "idli_sambar", "name": "Idli with Sambar", "category": "breakfast", "per_serving": {"calories": 290, "protein": 10, "carbs": 50, "fat": 4, "fiber": 6}, "serving_size": "3 idlis + sambar", "ingredients": ["rice", "urad dal", "mixed vegetables", "tamarind", "spices"], "tags": ["south-indian", "steamed"]},
+      {"id": "toast_peanut_butter", "name": "Whole Wheat Toast with Peanut Butter", "category": "breakfast", "per_serving": {"calories": 340, "protein": 13, "carbs": 38, "fat": 16, "fiber": 5}, "serving_size": "2 slices", "ingredients": ["whole wheat bread", "peanut butter", "banana"], "tags": ["quick", "high-protein"]},
+      {"id": "fruit_smoothie", "name": "Mixed Fruit Smoothie", "category": "breakfast", "per_serving": {"calories": 250, "protein": 8, "carbs": 45, "fat": 4, "fiber": 4}, "serving_size": "1 glass (350ml)", "ingredients": ["banana", "mango", "yogurt", "honey", "chia seeds"], "tags": ["refreshing", "quick"]},
+
+      {"id": "paneer_tikka", "name": "Paneer Tikka with Roti", "category": "lunch", "per_serving": {"calories": 480, "protein": 24, "carbs": 42, "fat": 22, "fiber": 4}, "serving_size": "200g paneer + 2 roti", "ingredients": ["paneer", "bell peppers", "yogurt", "spices", "whole wheat flour"], "tags": ["high-protein", "indian"]},
+      {"id": "rajma_rice", "name": "Rajma Chawal", "category": "lunch", "per_serving": {"calories": 450, "protein": 18, "carbs": 68, "fat": 10, "fiber": 12}, "serving_size": "1 bowl rajma + 1 cup rice", "ingredients": ["kidney beans", "rice", "onion", "tomato", "spices"], "tags": ["protein-rich", "north-indian"]},
+      {"id": "chole_rice", "name": "Chole with Brown Rice", "category": "lunch", "per_serving": {"calories": 420, "protein": 16, "carbs": 62, "fat": 12, "fiber": 10}, "serving_size": "1 bowl + 1 cup rice", "ingredients": ["chickpeas", "brown rice", "onion", "tomato", "spices"], "tags": ["high-fiber", "protein-rich"]},
+      {"id": "veggie_wrap", "name": "Grilled Vegetable Wrap", "category": "lunch", "per_serving": {"calories": 380, "protein": 12, "carbs": 48, "fat": 14, "fiber": 6}, "serving_size": "1 large wrap", "ingredients": ["tortilla", "grilled vegetables", "hummus", "lettuce", "cheese"], "tags": ["quick", "balanced"]},
+      {"id": "dal_rice", "name": "Dal Tadka with Jeera Rice", "category": "lunch", "per_serving": {"calories": 410, "protein": 15, "carbs": 60, "fat": 11, "fiber": 8}, "serving_size": "1 bowl dal + 1 cup rice", "ingredients": ["toor dal", "rice", "cumin", "ghee", "onion", "tomato"], "tags": ["comfort-food", "indian"]},
+      {"id": "pasta_arrabiata", "name": "Whole Wheat Pasta Arrabiata", "category": "lunch", "per_serving": {"calories": 400, "protein": 14, "carbs": 58, "fat": 12, "fiber": 7}, "serving_size": "1 plate (250g)", "ingredients": ["whole wheat pasta", "tomato sauce", "garlic", "chili flakes", "olive oil"], "tags": ["italian", "quick"]},
+
+      {"id": "mixed_nuts", "name": "Mixed Nuts & Seeds", "category": "snack", "per_serving": {"calories": 180, "protein": 6, "carbs": 8, "fat": 14, "fiber": 3}, "serving_size": "30g handful", "ingredients": ["almonds", "walnuts", "pumpkin seeds", "sunflower seeds"], "tags": ["healthy-fat", "quick"]},
+      {"id": "fruit_chaat", "name": "Fresh Fruit Chaat", "category": "snack", "per_serving": {"calories": 120, "protein": 2, "carbs": 28, "fat": 1, "fiber": 4}, "serving_size": "1 bowl (200g)", "ingredients": ["apple", "pomegranate", "guava", "chaat masala", "lemon juice"], "tags": ["refreshing", "low-calorie"]},
+      {"id": "sprouts_salad", "name": "Sprouted Moong Salad", "category": "snack", "per_serving": {"calories": 150, "protein": 10, "carbs": 20, "fat": 2, "fiber": 5}, "serving_size": "1 bowl (150g)", "ingredients": ["sprouted moong", "onion", "tomato", "cucumber", "lemon", "spices"], "tags": ["high-protein", "healthy"]},
+      {"id": "roasted_makhana", "name": "Roasted Makhana", "category": "snack", "per_serving": {"calories": 140, "protein": 5, "carbs": 22, "fat": 3, "fiber": 2}, "serving_size": "1 bowl (40g)", "ingredients": ["fox nuts", "ghee", "salt", "turmeric"], "tags": ["light", "indian"]},
+      {"id": "yogurt_granola", "name": "Greek Yogurt with Granola", "category": "snack", "per_serving": {"calories": 200, "protein": 12, "carbs": 25, "fat": 6, "fiber": 3}, "serving_size": "1 bowl (200g)", "ingredients": ["greek yogurt", "granola", "honey", "berries"], "tags": ["high-protein", "probiotic"]},
+
+      {"id": "palak_paneer", "name": "Palak Paneer with Roti", "category": "dinner", "per_serving": {"calories": 420, "protein": 22, "carbs": 38, "fat": 20, "fiber": 6}, "serving_size": "1 bowl + 2 roti", "ingredients": ["spinach", "paneer", "onion", "tomato", "spices", "whole wheat roti"], "tags": ["iron-rich", "north-indian"]},
+      {"id": "veg_khichdi", "name": "Vegetable Khichdi", "category": "dinner", "per_serving": {"calories": 350, "protein": 14, "carbs": 52, "fat": 8, "fiber": 6}, "serving_size": "1 bowl (300g)", "ingredients": ["rice", "moong dal", "mixed vegetables", "ghee", "cumin"], "tags": ["comfort-food", "light"]},
+      {"id": "stuffed_paratha", "name": "Aloo Stuffed Paratha with Curd", "category": "dinner", "per_serving": {"calories": 400, "protein": 10, "carbs": 52, "fat": 16, "fiber": 4}, "serving_size": "2 parathas + curd", "ingredients": ["whole wheat flour", "potato", "spices", "curd", "butter"], "tags": ["filling", "north-indian"]},
+      {"id": "veg_pulao", "name": "Vegetable Pulao with Raita", "category": "dinner", "per_serving": {"calories": 380, "protein": 10, "carbs": 56, "fat": 12, "fiber": 5}, "serving_size": "1 plate + raita", "ingredients": ["basmati rice", "mixed vegetables", "spices", "yogurt", "cucumber"], "tags": ["aromatic", "balanced"]},
+      {"id": "mushroom_curry", "name": "Mushroom Curry with Chapati", "category": "dinner", "per_serving": {"calories": 360, "protein": 14, "carbs": 42, "fat": 14, "fiber": 5}, "serving_size": "1 bowl + 2 chapati", "ingredients": ["mushrooms", "onion", "tomato", "spices", "whole wheat chapati"], "tags": ["low-calorie", "protein-rich"]}
+    ],
+    "non_vegetarian": [
+      {"id": "egg_toast", "name": "Scrambled Eggs on Toast", "category": "breakfast", "per_serving": {"calories": 350, "protein": 20, "carbs": 30, "fat": 16, "fiber": 3}, "serving_size": "2 eggs + 2 slices", "ingredients": ["eggs", "whole wheat bread", "butter", "pepper", "salt"], "tags": ["high-protein", "quick"]},
+      {"id": "egg_bhurji", "name": "Egg Bhurji with Paratha", "category": "breakfast", "per_serving": {"calories": 420, "protein": 22, "carbs": 38, "fat": 20, "fiber": 3}, "serving_size": "2 eggs + 1 paratha", "ingredients": ["eggs", "onion", "tomato", "green chili", "whole wheat paratha"], "tags": ["indian", "filling"]},
+      {"id": "chicken_sandwich", "name": "Grilled Chicken Sandwich", "category": "breakfast", "per_serving": {"calories": 380, "protein": 28, "carbs": 35, "fat": 14, "fiber": 4}, "serving_size": "1 sandwich", "ingredients": ["chicken breast", "whole wheat bread", "lettuce", "tomato", "mayo"], "tags": ["high-protein", "quick"]},
+
+      {"id": "chicken_rice", "name": "Chicken Curry with Rice", "category": "lunch", "per_serving": {"calories": 520, "protein": 32, "carbs": 55, "fat": 18, "fiber": 3}, "serving_size": "200g chicken + 1 cup rice", "ingredients": ["chicken", "rice", "onion", "tomato", "yogurt", "spices"], "tags": ["high-protein", "indian"]},
+      {"id": "fish_curry", "name": "Fish Curry with Rice", "category": "lunch", "per_serving": {"calories": 450, "protein": 30, "carbs": 50, "fat": 14, "fiber": 2}, "serving_size": "200g fish + 1 cup rice", "ingredients": ["fish", "rice", "coconut milk", "tamarind", "spices"], "tags": ["omega-3", "south-indian"]},
+      {"id": "chicken_wrap", "name": "Chicken Tikka Wrap", "category": "lunch", "per_serving": {"calories": 460, "protein": 30, "carbs": 40, "fat": 18, "fiber": 3}, "serving_size": "1 large wrap", "ingredients": ["chicken tikka", "tortilla", "onion", "mint chutney", "lettuce"], "tags": ["high-protein", "indian-fusion"]},
+      {"id": "egg_fried_rice", "name": "Egg Fried Rice", "category": "lunch", "per_serving": {"calories": 430, "protein": 18, "carbs": 58, "fat": 14, "fiber": 3}, "serving_size": "1 plate (300g)", "ingredients": ["rice", "eggs", "mixed vegetables", "soy sauce", "spring onion"], "tags": ["indo-chinese", "quick"]},
+
+      {"id": "boiled_eggs", "name": "Boiled Eggs with Salt & Pepper", "category": "snack", "per_serving": {"calories": 155, "protein": 13, "carbs": 1, "fat": 11, "fiber": 0}, "serving_size": "2 eggs", "ingredients": ["eggs", "salt", "pepper"], "tags": ["high-protein", "simple"]},
+      {"id": "chicken_salad", "name": "Grilled Chicken Salad", "category": "snack", "per_serving": {"calories": 220, "protein": 25, "carbs": 10, "fat": 9, "fiber": 3}, "serving_size": "1 bowl (200g)", "ingredients": ["grilled chicken", "lettuce", "cucumber", "tomato", "olive oil", "lemon"], "tags": ["high-protein", "low-carb"]},
+
+      {"id": "grilled_chicken", "name": "Grilled Chicken with Salad", "category": "dinner", "per_serving": {"calories": 400, "protein": 38, "carbs": 15, "fat": 20, "fiber": 4}, "serving_size": "200g chicken + salad", "ingredients": ["chicken breast", "olive oil", "mixed salad", "lemon", "herbs"], "tags": ["high-protein", "healthy"]},
+      {"id": "keema_roti", "name": "Mutton Keema with Roti", "category": "dinner", "per_serving": {"calories": 500, "protein": 30, "carbs": 40, "fat": 24, "fiber": 3}, "serving_size": "200g keema + 2 roti", "ingredients": ["minced mutton", "onion", "peas", "spices", "whole wheat roti"], "tags": ["high-protein", "north-indian"]},
+      {"id": "fish_grilled", "name": "Grilled Fish with Vegetables", "category": "dinner", "per_serving": {"calories": 350, "protein": 35, "carbs": 12, "fat": 16, "fiber": 4}, "serving_size": "200g fish + veggies", "ingredients": ["fish fillet", "lemon", "herbs", "grilled vegetables", "olive oil"], "tags": ["omega-3", "light"]}
+    ],
+    "vegan": [
+      {"id": "smoothie_bowl", "name": "Acai Smoothie Bowl", "category": "breakfast", "per_serving": {"calories": 300, "protein": 8, "carbs": 52, "fat": 8, "fiber": 8}, "serving_size": "1 bowl (300g)", "ingredients": ["acai powder", "frozen banana", "almond milk", "granola", "berries", "chia seeds"], "tags": ["antioxidant", "filling"]},
+      {"id": "poha", "name": "Vegetable Poha", "category": "breakfast", "per_serving": {"calories": 260, "protein": 6, "carbs": 44, "fat": 7, "fiber": 3}, "serving_size": "1 plate (200g)", "ingredients": ["flattened rice", "onion", "peas", "peanuts", "turmeric", "curry leaves"], "tags": ["indian", "quick"]},
+      {"id": "avocado_toast", "name": "Avocado Toast with Seeds", "category": "breakfast", "per_serving": {"calories": 320, "protein": 8, "carbs": 35, "fat": 18, "fiber": 8}, "serving_size": "2 slices", "ingredients": ["whole wheat bread", "avocado", "cherry tomatoes", "pumpkin seeds", "lemon"], "tags": ["healthy-fat", "trendy"]},
+
+      {"id": "tofu_stir_fry", "name": "Tofu Stir-Fry with Brown Rice", "category": "lunch", "per_serving": {"calories": 420, "protein": 20, "carbs": 52, "fat": 14, "fiber": 6}, "serving_size": "200g tofu + 1 cup rice", "ingredients": ["tofu", "brown rice", "broccoli", "bell peppers", "soy sauce", "sesame oil"], "tags": ["high-protein", "asian"]},
+      {"id": "quinoa_salad", "name": "Quinoa & Chickpea Salad", "category": "lunch", "per_serving": {"calories": 400, "protein": 16, "carbs": 55, "fat": 12, "fiber": 10}, "serving_size": "1 bowl (300g)", "ingredients": ["quinoa", "chickpeas", "cucumber", "tomato", "olive oil", "lemon"], "tags": ["superfood", "mediterranean"]},
+      {"id": "dal_roti_vegan", "name": "Masoor Dal with Roti", "category": "lunch", "per_serving": {"calories": 380, "protein": 16, "carbs": 56, "fat": 8, "fiber": 10}, "serving_size": "1 bowl dal + 2 roti", "ingredients": ["masoor dal", "whole wheat roti", "onion", "tomato", "spices"], "tags": ["protein-rich", "indian"]},
+
+      {"id": "hummus_veggies", "name": "Hummus with Veggie Sticks", "category": "snack", "per_serving": {"calories": 160, "protein": 6, "carbs": 18, "fat": 8, "fiber": 5}, "serving_size": "100g hummus + veggies", "ingredients": ["chickpeas", "tahini", "carrot", "cucumber", "bell pepper"], "tags": ["high-fiber", "mediterranean"]},
+      {"id": "energy_balls", "name": "Date & Nut Energy Balls", "category": "snack", "per_serving": {"calories": 180, "protein": 5, "carbs": 24, "fat": 8, "fiber": 3}, "serving_size": "3 balls", "ingredients": ["dates", "almonds", "oats", "cocoa powder", "coconut"], "tags": ["natural-sugar", "portable"]},
+      {"id": "roasted_chana", "name": "Roasted Chana (Chickpeas)", "category": "snack", "per_serving": {"calories": 140, "protein": 8, "carbs": 22, "fat": 3, "fiber": 6}, "serving_size": "50g", "ingredients": ["roasted chickpeas", "salt", "chaat masala"], "tags": ["high-protein", "crunchy"]},
+
+      {"id": "veg_curry_rice", "name": "Mixed Vegetable Curry with Rice", "category": "dinner", "per_serving": {"calories": 380, "protein": 10, "carbs": 58, "fat": 12, "fiber": 7}, "serving_size": "1 bowl curry + 1 cup rice", "ingredients": ["mixed vegetables", "coconut milk", "rice", "curry powder", "garlic"], "tags": ["comforting", "balanced"]},
+      {"id": "buddha_bowl", "name": "Buddha Bowl", "category": "dinner", "per_serving": {"calories": 420, "protein": 16, "carbs": 52, "fat": 16, "fiber": 10}, "serving_size": "1 large bowl", "ingredients": ["sweet potato", "chickpeas", "kale", "quinoa", "tahini dressing", "avocado"], "tags": ["superfood", "colorful"]},
+      {"id": "lentil_soup", "name": "Red Lentil Soup with Bread", "category": "dinner", "per_serving": {"calories": 350, "protein": 18, "carbs": 50, "fat": 8, "fiber": 12}, "serving_size": "1 bowl + bread", "ingredients": ["red lentils", "carrot", "onion", "garlic", "cumin", "whole wheat bread"], "tags": ["warming", "high-fiber"]}
+    ]
+  },
+  "activity_multipliers": {
+    "sedentary": 1.2,
+    "light": 1.375,
+    "moderate": 1.55,
+    "active": 1.725,
+    "very_active": 1.9
+  },
+  "goal_adjustments": {
+    "weight_loss": -0.15,
+    "maintenance": 0.0,
+    "muscle_gain": 0.15,
+    "fitness": 0.10
+  },
+  "hydration_tips": [
+    "Drink at least 8 glasses (2 liters) of water daily.",
+    "Start your day with a glass of warm water with lemon.",
+    "Carry a reusable water bottle to stay hydrated throughout the day.",
+    "Drink a glass of water 30 minutes before each meal.",
+    "Herbal teas count towards your daily water intake."
+  ],
+  "general_tips": {
+    "weight_loss": [
+      "Eat slowly and mindfully — it takes 20 minutes for your brain to register fullness.",
+      "Fill half your plate with vegetables at every meal.",
+      "Avoid sugary drinks and processed snacks.",
+      "Get 7-8 hours of quality sleep each night.",
+      "Stay consistent — small daily habits lead to big results."
+    ],
+    "maintenance": [
+      "Maintain a balanced mix of proteins, carbs, and healthy fats.",
+      "Listen to your body's hunger and fullness cues.",
+      "Stay active with at least 30 minutes of movement daily.",
+      "Keep healthy snacks accessible to avoid junk food temptation.",
+      "Review your diet periodically and adjust as needed."
+    ],
+    "muscle_gain": [
+      "Consume protein with every meal (aim for 1.6-2.2g per kg body weight).",
+      "Eat a protein-rich snack within 30 minutes after exercise.",
+      "Don't skip carbs — they fuel your workouts.",
+      "Get adequate rest between workout sessions.",
+      "Consider adding healthy calorie-dense foods like nuts and avocados."
+    ],
+    "fitness": [
+      "Time your meals around your workout schedule.",
+      "Pre-workout: eat complex carbs 1-2 hours before exercise.",
+      "Post-workout: combine protein and carbs for recovery.",
+      "Stay hydrated before, during, and after exercise.",
+      "Focus on whole, unprocessed foods for sustained energy."
+    ]
+  }
+}

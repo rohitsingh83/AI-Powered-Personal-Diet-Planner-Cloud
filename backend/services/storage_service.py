@@ -6,11 +6,16 @@ from fastapi import UploadFile
 from models.user import User
 from models.user_file import UserFile
 
-# Import storage backend from parent directory
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
-from cloud.storage_service import get_storage_backend
+# Import storage backend from local backend or parent directory
+try:
+    from cloud.storage_service import get_storage_backend
+except ImportError:
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
+    from cloud.storage_service import get_storage_backend
 
 storage_backend = get_storage_backend()
+
 
 async def upload_file(db: Session, user: User, file: UploadFile) -> UserFile:
     # Read file content
