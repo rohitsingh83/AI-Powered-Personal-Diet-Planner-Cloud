@@ -1,89 +1,176 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" width="100%" height="100%" style="background:#f8fafc; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 780" width="100%" height="100%" style="background:#f1f5f9; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
   <defs>
-    <filter id="shadow" x="-2%" y="-2%" width="104%" height="104%">
-      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.08" />
+    <filter id="winShadow" x="-3%" y="-2%" width="106%" height="106%">
+      <feDropShadow dx="0" dy="12" stdDeviation="20" flood-color="#0f172a" flood-opacity="0.12" />
+    </filter>
+    <filter id="cardShadow" x="-2%" y="-2%" width="104%" height="105%">
+      <feDropShadow dx="0" dy="2" stdDeviation="5" flood-color="#0f172a" flood-opacity="0.05" />
     </filter>
   </defs>
 
-  <!-- Navbar -->
-  <rect x="0" y="0" width="1000" height="60" fill="#ffffff" stroke="#e2e8f0" />
-  <circle cx="45" cy="30" r="14" fill="#10b981" />
-  <text x="45" y="35" text-anchor="middle" fill="#ffffff" font-size="14">🥗</text>
-  <text x="70" y="36" fill="#0f172a" font-size="16" font-weight="700">NutriCloud <tspan fill="#10b981" font-weight="400">AI</tspan></text>
-  <text x="500" y="35" fill="#64748b" font-size="13">Dashboard</text>
-  <text x="610" y="35" fill="#64748b" font-size="13">Generate Plan</text>
-  <text x="730" y="35" fill="#10b981" font-size="13" font-weight="700">Cloud Storage Vault</text>
-  <text x="890" y="35" fill="#0f172a" font-size="13" font-weight="600">👤 Demo User</text>
+  <!-- Browser Window Wrapper -->
+  <g transform="translate(30, 20)">
+    <!-- Window Frame Outer -->
+    <rect width="1140" height="740" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" filter="url(#winShadow)" />
 
-  <!-- Title & Upload Button -->
-  <text x="60" y="105" fill="#0f172a" font-size="24" font-weight="800">Cloud Storage Vault ☁️</text>
-  <text x="60" y="128" fill="#64748b" font-size="13">Tenant-isolated health records, lab reports, and diet export PDFs with Presigned URL access</text>
-
-  <!-- Upload Drag and Drop Zone -->
-  <g transform="translate(60, 150)">
-    <rect width="880" height="110" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-dasharray="6,4" filter="url(#shadow)" />
-    <circle cx="440" cy="40" r="18" fill="#ecfdf5" />
-    <text x="440" y="46" text-anchor="middle" fill="#10b981" font-size="16">⬆️</text>
-    <text x="440" y="75" text-anchor="middle" fill="#0f172a" font-size="13" font-weight="600">Drag and drop health lab reports, meal photos, or fitness PDFs here</text>
-    <text x="440" y="93" text-anchor="middle" fill="#94a3b8" font-size="11">Supports PDF, PNG, JPG, JSON (Max 15MB) • Objects prefixed with user_id</text>
-  </g>
-
-  <!-- Vault File Table -->
-  <g transform="translate(60, 280)">
-    <rect width="880" height="280" rx="10" fill="#ffffff" stroke="#e2e8f0" filter="url(#shadow)" />
+    <!-- Browser Window Titlebar -->
+    <path d="M 0 16 A 16 16 0 0 1 16 0 L 1124 0 A 16 16 0 0 1 1140 16 L 1140 44 L 0 44 Z" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1" />
     
-    <!-- Table Header -->
-    <rect x="0" y="0" width="880" height="42" rx="10" fill="#f8fafc" />
-    <text x="30" y="26" fill="#64748b" font-size="11" font-weight="700">OBJECT NAME</text>
-    <text x="340" y="26" fill="#64748b" font-size="11" font-weight="700">CLOUD KEY / PREFIX</text>
-    <text x="560" y="26" fill="#64748b" font-size="11" font-weight="700">SIZE</text>
-    <text x="660" y="26" fill="#64748b" font-size="11" font-weight="700">SECURITY</text>
-    <text x="800" y="26" fill="#64748b" font-size="11" font-weight="700">ACTION</text>
+    <!-- Window Controls -->
+    <circle cx="24" cy="22" r="6" fill="#ef4444" />
+    <circle cx="44" cy="22" r="6" fill="#f59e0b" />
+    <circle cx="64" cy="22" r="6" fill="#10b981" />
 
-    <!-- Row 1 -->
-    <g transform="translate(0, 42)">
-      <line x1="0" y1="0" x2="880" y2="0" stroke="#f1f5f9" />
-      <text x="30" y="32" font-size="16">📄</text>
-      <text x="56" y="30" fill="#0f172a" font-size="13" font-weight="600">blood_panel_2026.pdf</text>
-      <text x="56" y="44" fill="#94a3b8" font-size="10">Clinical lipid &amp; glucose panel</text>
-      <text x="340" y="32" fill="#475569" font-size="11" font-family="monospace">user_demo123/a1b2_blood.pdf</text>
-      <text x="560" y="32" fill="#475569" font-size="12">2.4 MB</text>
-      <rect x="660" y="17" width="95" height="22" rx="4" fill="#ecfdf5" stroke="#a7f3d0" />
-      <text x="707" y="32" text-anchor="middle" fill="#065f46" font-size="10" font-weight="600">Presigned 15m</text>
-      <rect x="790" y="17" width="65" height="22" rx="4" fill="#2563eb" />
-      <text x="822" y="32" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="600">Download</text>
+    <!-- Browser Address Bar -->
+    <rect x="240" y="10" width="660" height="24" rx="6" fill="#ffffff" stroke="#cbd5e1" />
+    <text x="255" y="26" fill="#10b981" font-size="11" font-weight="700">🔒 https://</text>
+    <text x="320" y="26" fill="#334155" font-size="11">ai-powered-personal-diet-planner-cloud-rohitsingh83.vercel.app/files</text>
+    <rect x="830" y="14" width="60" height="16" rx="4" fill="#ecfdf5" />
+    <text x="860" y="25" text-anchor="middle" fill="#059669" font-size="9" font-weight="700">VERCEL EDGE</text>
+
+    <!-- App Top Navigation Bar -->
+    <g transform="translate(0, 44)">
+      <rect width="1140" height="60" fill="#ffffff" stroke="#e2e8f0" />
+      
+      <!-- Brand Logo -->
+      <circle cx="36" cy="30" r="15" fill="#10b981" />
+      <text x="36" y="36" text-anchor="middle" fill="#ffffff" font-size="15">🥗</text>
+      <text x="62" y="35" fill="#0f172a" font-size="17" font-weight="800" letter-spacing="-0.3">NutriCloud <tspan fill="#10b981">AI</tspan></text>
+      <rect x="182" y="21" width="76" height="18" rx="9" fill="#ecfdf5" stroke="#a7f3d0" />
+      <text x="220" y="33" text-anchor="middle" fill="#065f46" font-size="9" font-weight="700">MULTI-CLOUD</text>
+
+      <!-- Nav Links -->
+      <g transform="translate(420, 18)">
+        <text x="47" y="17" text-anchor="middle" fill="#64748b" font-size="12" font-weight="500">Dashboard</text>
+        <text x="145" y="17" text-anchor="middle" fill="#64748b" font-size="12" font-weight="500">Generate Plan</text>
+        <text x="245" y="17" text-anchor="middle" fill="#64748b" font-size="12" font-weight="500">Saved Plans</text>
+        
+        <rect x="300" y="0" width="105" height="26" rx="13" fill="#eff6ff" />
+        <text x="352" y="17" text-anchor="middle" fill="#2563eb" font-size="12" font-weight="700">Cloud Vault</text>
+      </g>
+
+      <!-- User Menu -->
+      <g transform="translate(970, 16)">
+        <rect width="145" height="30" rx="15" fill="#f8fafc" stroke="#e2e8f0" />
+        <circle cx="16" cy="15" r="9" fill="#10b981" />
+        <text x="16" y="19" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">D</text>
+        <text x="32" y="19" fill="#0f172a" font-size="11" font-weight="600">Demo User</text>
+        <circle cx="128" cy="15" r="3.5" fill="#10b981" />
+      </g>
     </g>
 
-    <!-- Row 2 -->
-    <g transform="translate(0, 102)">
-      <line x1="0" y1="0" x2="880" y2="0" stroke="#f1f5f9" />
-      <text x="30" y="32" font-size="16">📊</text>
-      <text x="56" y="30" fill="#0f172a" font-size="13" font-weight="600">nutrition_log_week1.json</text>
-      <text x="56" y="44" fill="#94a3b8" font-size="10">Aggregated daily macros &amp; water tracking</text>
-      <text x="340" y="32" fill="#475569" font-size="11" font-family="monospace">user_demo123/c3d4_log.json</text>
-      <text x="560" y="32" fill="#475569" font-size="12">48 KB</text>
-      <rect x="660" y="17" width="95" height="22" rx="4" fill="#ecfdf5" stroke="#a7f3d0" />
-      <text x="707" y="32" text-anchor="middle" fill="#065f46" font-size="10" font-weight="600">Presigned 15m</text>
-      <rect x="790" y="17" width="65" height="22" rx="4" fill="#2563eb" />
-      <text x="822" y="32" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="600">Download</text>
-    </g>
+    <!-- Main Content Area -->
+    <g transform="translate(40, 120)">
+      
+      <!-- Page Header -->
+      <g transform="translate(0, 0)">
+        <rect width="186" height="22" rx="11" fill="#eff6ff" stroke="#bfdbfe" />
+        <text x="93" y="15" text-anchor="middle" fill="#1d4ed8" font-size="10" font-weight="700">☁️ OBJECT STORAGE DECOUPLING</text>
+        
+        <text x="0" y="48" fill="#0f172a" font-size="24" font-weight="900" letter-spacing="-0.5">Cloud Health Records Vault ☁️</text>
+        <text x="0" y="68" fill="#64748b" font-size="12">Tenant-isolated medical records, clinical lab PDFs, and dietary logs with time-limited Presigned URL access.</text>
+      </g>
 
-    <!-- Row 3 -->
-    <g transform="translate(0, 162)">
-      <line x1="0" y1="0" x2="880" y2="0" stroke="#f1f5f9" />
-      <text x="30" y="32" font-size="16">🥗</text>
-      <text x="56" y="30" fill="#0f172a" font-size="13" font-weight="600">diet_plan_maintenance.json</text>
-      <text x="56" y="44" fill="#94a3b8" font-size="10">AI-generated 3-day meal itinerary export</text>
-      <text x="340" y="32" fill="#475569" font-size="11" font-family="monospace">user_demo123/e5f6_plan.json</text>
-      <text x="560" y="32" fill="#475569" font-size="12">18 KB</text>
-      <rect x="660" y="17" width="95" height="22" rx="4" fill="#ecfdf5" stroke="#a7f3d0" />
-      <text x="707" y="32" text-anchor="middle" fill="#065f46" font-size="10" font-weight="600">Presigned 15m</text>
-      <rect x="790" y="17" width="65" height="22" rx="4" fill="#2563eb" />
-      <text x="822" y="32" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="600">Download</text>
-    </g>
+      <!-- Drag and Drop Upload Zone -->
+      <g transform="translate(0, 88)">
+        <rect width="1060" height="106" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="6,5" filter="url(#cardShadow)" />
+        <circle cx="530" cy="38" r="18" fill="#eff6ff" />
+        <text x="530" y="44" text-anchor="middle" fill="#2563eb" font-size="16">⬆️</text>
+        <text x="530" y="72" text-anchor="middle" fill="#0f172a" font-size="13" font-weight="700">Drag and drop health lab reports, meal photos, or fitness PDFs here</text>
+        <text x="530" y="90" text-anchor="middle" fill="#94a3b8" font-size="11">Supports PDF, PNG, JPG, JSON (Max 10MB) • Tenant UID prefix auto-injected</text>
+      </g>
 
-    <!-- Table Footer Security Note -->
-    <rect x="0" y="235" width="880" height="45" rx="0" fill="#f0fdf4" />
-    <text x="30" y="262" fill="#166534" font-size="11" font-weight="600">🔒 Multi-Tenant Zero-Trust Isolation: No user can access or view files belonging to another tenant prefix.</text>
+      <!-- Vault File List Table -->
+      <g transform="translate(0, 214)">
+        <rect width="1060" height="340" rx="14" fill="#ffffff" stroke="#e2e8f0" filter="url(#cardShadow)" />
+        
+        <!-- Table Header Bar -->
+        <path d="M 0 14 A 14 14 0 0 1 14 0 L 1046 0 A 14 14 0 0 1 1060 14 L 1060 40 L 0 40 Z" fill="#f8fafc" stroke="#e2e8f0" />
+        <text x="28" y="25" fill="#64748b" font-size="10" font-weight="800" letter-spacing="0.5">DOCUMENT / OBJECT NAME</text>
+        <text x="410" y="25" fill="#64748b" font-size="10" font-weight="800" letter-spacing="0.5">STORAGE KEY / TENANT PREFIX</text>
+        <text x="700" y="25" fill="#64748b" font-size="10" font-weight="800" letter-spacing="0.5">SIZE</text>
+        <text x="800" y="25" fill="#64748b" font-size="10" font-weight="800" letter-spacing="0.5">SECURITY</text>
+        <text x="960" y="25" fill="#64748b" font-size="10" font-weight="800" letter-spacing="0.5">ACTION</text>
+
+        <!-- Row 1 -->
+        <g transform="translate(0, 40)">
+          <line x1="0" y1="62" x2="1060" y2="62" stroke="#f1f5f9" />
+          <circle cx="44" cy="31" r="14" fill="#fee2e2" />
+          <text x="44" y="36" text-anchor="middle" font-size="12">📄</text>
+          <text x="70" y="26" fill="#0f172a" font-size="12.5" font-weight="700">clinical_lipid_panel_2026.pdf</text>
+          <text x="70" y="42" fill="#94a3b8" font-size="10.5">Biochemical lipid breakdown &amp; fasting blood sugar report</text>
+
+          <text x="410" y="35" fill="#475569" font-size="11" font-family="monospace">user_demo123/a1b2_lipid_panel.pdf</text>
+          <text x="700" y="35" fill="#475569" font-size="11.5" font-weight="600">2.4 MB</text>
+          
+          <rect x="800" y="20" width="105" height="22" rx="5" fill="#ecfdf5" stroke="#a7f3d0" />
+          <text x="852" y="35" text-anchor="middle" fill="#065f46" font-size="9.5" font-weight="700">Presigned 15m</text>
+
+          <rect x="940" y="18" width="85" height="26" rx="6" fill="#2563eb" />
+          <text x="982" y="35" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">Download</text>
+        </g>
+
+        <!-- Row 2 -->
+        <g transform="translate(0, 102)">
+          <line x1="0" y1="62" x2="1060" y2="62" stroke="#f1f5f9" />
+          <circle cx="44" cy="31" r="14" fill="#eff6ff" />
+          <text x="44" y="36" text-anchor="middle" font-size="12">📊</text>
+          <text x="70" y="26" fill="#0f172a" font-size="12.5" font-weight="700">weekly_macros_tracking.json</text>
+          <text x="70" y="42" fill="#94a3b8" font-size="10.5">Aggregated calorie, protein, carb, water logs export</text>
+
+          <text x="410" y="35" fill="#475569" font-size="11" font-family="monospace">user_demo123/c3d4_macros_log.json</text>
+          <text x="700" y="35" fill="#475569" font-size="11.5" font-weight="600">48 KB</text>
+          
+          <rect x="800" y="20" width="105" height="22" rx="5" fill="#ecfdf5" stroke="#a7f3d0" />
+          <text x="852" y="35" text-anchor="middle" fill="#065f46" font-size="9.5" font-weight="700">Presigned 15m</text>
+
+          <rect x="940" y="18" width="85" height="26" rx="6" fill="#2563eb" />
+          <text x="982" y="35" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">Download</text>
+        </g>
+
+        <!-- Row 3 -->
+        <g transform="translate(0, 164)">
+          <line x1="0" y1="62" x2="1060" y2="62" stroke="#f1f5f9" />
+          <circle cx="44" cy="31" r="14" fill="#faf5ff" />
+          <text x="44" y="36" text-anchor="middle" font-size="12">🏥</text>
+          <text x="70" y="26" fill="#0f172a" font-size="12.5" font-weight="700">dexa_scan_body_composition.pdf</text>
+          <text x="70" y="42" fill="#94a3b8" font-size="10.5">Dual-energy X-ray absorptiometry visceral fat analysis</text>
+
+          <text x="410" y="35" fill="#475569" font-size="11" font-family="monospace">user_demo123/e5f6_dexa_scan.pdf</text>
+          <text x="700" y="35" fill="#475569" font-size="11.5" font-weight="600">1.8 MB</text>
+          
+          <rect x="800" y="20" width="105" height="22" rx="5" fill="#ecfdf5" stroke="#a7f3d0" />
+          <text x="852" y="35" text-anchor="middle" fill="#065f46" font-size="9.5" font-weight="700">Presigned 15m</text>
+
+          <rect x="940" y="18" width="85" height="26" rx="6" fill="#2563eb" />
+          <text x="982" y="35" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">Download</text>
+        </g>
+
+        <!-- Row 4 -->
+        <g transform="translate(0, 226)">
+          <circle cx="44" cy="31" r="14" fill="#ecfdf5" />
+          <text x="44" y="36" text-anchor="middle" font-size="12">🥗</text>
+          <text x="70" y="26" fill="#0f172a" font-size="12.5" font-weight="700">ai_diet_plan_maintenance.json</text>
+          <text x="70" y="42" fill="#94a3b8" font-size="10.5">Gemini-generated 3-day meal itinerary JSON export</text>
+
+          <text x="410" y="35" fill="#475569" font-size="11" font-family="monospace">user_demo123/g7h8_diet_plan.json</text>
+          <text x="700" y="35" fill="#475569" font-size="11.5" font-weight="600">16 KB</text>
+          
+          <rect x="800" y="20" width="105" height="22" rx="5" fill="#ecfdf5" stroke="#a7f3d0" />
+          <text x="852" y="35" text-anchor="middle" fill="#065f46" font-size="9.5" font-weight="700">Presigned 15m</text>
+
+          <rect x="940" y="18" width="85" height="26" rx="6" fill="#2563eb" />
+          <text x="982" y="35" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">Download</text>
+        </g>
+
+        <!-- Zero Trust Footer -->
+        <g transform="translate(0, 290)">
+          <path d="M 0 0 L 1060 0 L 1060 36 A 14 14 0 0 1 1046 50 L 14 50 A 14 14 0 0 1 0 36 Z" fill="#f0fdf4" stroke="#e2e8f0" />
+          <text x="28" y="30" fill="#166534" font-size="11" font-weight="700">🔒 Multi-Tenant Zero-Trust Storage Isolation:</text>
+          <text x="310" y="30" fill="#15803d" font-size="11">Every object is stored with tenant prefix `user_{id}/` and verified against JWT claims. Direct public access is blocked.</text>
+        </g>
+      </g>
+
+    </g>
   </g>
 </svg>

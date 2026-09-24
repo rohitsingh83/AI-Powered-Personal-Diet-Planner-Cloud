@@ -1,6 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" width="100%" height="100%" style="background:#0f172a; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 740" width="100%" height="100%" style="background:#0a0f1d; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
   <defs>
-    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <!-- Gradients -->
+    <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#10b981" />
       <stop offset="100%" stop-color="#059669" />
     </linearGradient>
@@ -14,127 +15,231 @@
     </linearGradient>
     <linearGradient id="amberGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#f59e0b" />
-      <stop offset="100%" stop-color="#b45309" />
+      <stop offset="100%" stop-color="#d97706" />
     </linearGradient>
+    <linearGradient id="indigoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#4338ca" />
+    </linearGradient>
+
+    <!-- Filters -->
     <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
-      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.4" />
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.5" />
     </filter>
+    <filter id="glowGreen" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <!-- Markers -->
     <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 8 5 L 0 9 z" fill="#94a3b8" />
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#64748b" />
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#10b981" />
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#3b82f6" />
     </marker>
   </defs>
 
-  <!-- Title & Header -->
-  <text x="500" y="45" text-anchor="middle" fill="#f8fafc" font-size="22" font-weight="800" letter-spacing="0.5">
-    AI-POWERED PERSONAL DIET PLANNER — CLOUD ARCHITECTURE
-  </text>
-  <text x="500" y="70" text-anchor="middle" fill="#94a3b8" font-size="13">
-    End-to-End Stateless Cloud-Native System with Object Storage &amp; Multi-Tier Isolation
-  </text>
+  <!-- Title & Header Bar -->
+  <g transform="translate(60, 36)">
+    <rect width="210" height="24" rx="12" fill="#064e3b" stroke="#059669" stroke-width="1" />
+    <text x="105" y="16" text-anchor="middle" fill="#34d399" font-size="10.5" font-weight="800" letter-spacing="1">MULTI-CLOUD SYSTEM TOPOLOGY</text>
 
-  <!-- Boundaries / VPC -->
-  <rect x="230" y="100" width="740" height="430" rx="16" fill="#1e293b" stroke="#334155" stroke-width="2" stroke-dasharray="6,4" />
-  <text x="250" y="125" fill="#64748b" font-size="11" font-weight="700" letter-spacing="1">CLOUD ENVIRONMENT (AWS / GCP / RENDER PAAS)</text>
-
-  <!-- 1. Client / Frontend Tier -->
-  <g transform="translate(30, 200)">
-    <rect width="160" height="180" rx="12" fill="#1e293b" stroke="#3b82f6" stroke-width="2" filter="url(#shadow)" />
-    <rect width="160" height="36" rx="12" fill="url(#blueGrad)" />
-    <text x="80" y="24" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="700">Client / CDN Tier</text>
-    <circle cx="80" cy="75" r="22" fill="#3b82f6" opacity="0.2" />
-    <text x="80" y="81" text-anchor="middle" fill="#60a5fa" font-size="18">🌐</text>
-    <text x="80" y="115" text-anchor="middle" fill="#f1f5f9" font-size="13" font-weight="600">React + Vite SPA</text>
-    <text x="80" y="134" text-anchor="middle" fill="#94a3b8" font-size="11">Tailwind CSS</text>
-    <text x="80" y="152" text-anchor="middle" fill="#94a3b8" font-size="10">Cloudflare Pages / Vercel</text>
+    <text x="0" y="56" fill="#f8fafc" font-size="25" font-weight="900" letter-spacing="-0.5">
+      NutriCloud AI — Production Cloud Architecture
+    </text>
+    <text x="0" y="80" fill="#94a3b8" font-size="13">
+      Stateless Microservices • Vercel Global Edge CDN • Render Docker PaaS • Supabase PG15 DBaaS • Decoupled Object Vault
+    </text>
   </g>
 
-  <!-- 2. API Gateway & Containerized Backend -->
-  <g transform="translate(260, 160)">
-    <rect width="210" height="260" rx="12" fill="#0f172a" stroke="#10b981" stroke-width="2" filter="url(#shadow)" />
-    <rect width="210" height="36" rx="12" fill="url(#primaryGrad)" />
-    <text x="105" y="24" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="700">Stateless Backend PaaS</text>
-    
-    <rect x="15" y="55" width="180" height="42" rx="6" fill="#1e293b" stroke="#334155" />
-    <text x="105" y="74" text-anchor="middle" fill="#34d399" font-size="12" font-weight="600">FastAPI REST Gateway</text>
-    <text x="105" y="88" text-anchor="middle" fill="#94a3b8" font-size="10">Uvicorn ASGI • Async Workers</text>
+  <!-- Cloud Provider Perimeter Boundary (Render + Supabase + Vault VPC) -->
+  <rect x="290" y="130" width="870" height="570" rx="20" fill="#0d1527" stroke="#1e293b" stroke-width="2" stroke-dasharray="8,6" />
+  <rect x="310" y="145" width="280" height="24" rx="6" fill="#1e293b" />
+  <text x="320" y="161" fill="#94a3b8" font-size="10.5" font-weight="800" letter-spacing="1">CLOUD INFRASTRUCTURE (RENDER + AWS + SUPABASE)</text>
 
-    <rect x="15" y="108" width="180" height="42" rx="6" fill="#1e293b" stroke="#334155" />
-    <text x="105" y="127" text-anchor="middle" fill="#60a5fa" font-size="12" font-weight="600">Stateless JWT Auth</text>
-    <text x="105" y="141" text-anchor="middle" fill="#94a3b8" font-size="10">Bcrypt • RBAC • Multi-Tenant</text>
+  <!-- ========================================== -->
+  <!-- 1. FRONTEND / CLIENT TIER (VERCEL EDGE)   -->
+  <!-- ========================================== -->
+  <g transform="translate(40, 240)">
+    <rect width="210" height="340" rx="16" fill="#0f172a" stroke="#3b82f6" stroke-width="2" filter="url(#shadow)" />
+    <path d="M 0 16 A 16 16 0 0 1 16 0 L 194 0 A 16 16 0 0 1 210 16 L 210 44 L 0 44 Z" fill="url(#blueGrad)" />
+    <text x="105" y="27" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="800">1. Client / Edge CDN</text>
 
-    <rect x="15" y="161" width="180" height="42" rx="6" fill="#1e293b" stroke="#334155" />
-    <text x="105" y="180" text-anchor="middle" fill="#f59e0b" font-size="12" font-weight="600">Presigned URL Signer</text>
-    <text x="105" y="194" text-anchor="middle" fill="#94a3b8" font-size="10">Temporary Authorized Access</text>
+    <circle cx="105" cy="85" r="26" fill="#1e3a8a" opacity="0.6" />
+    <text x="105" y="93" text-anchor="middle" font-size="22">🌐</text>
+    <text x="105" y="130" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="800">Vercel Global Edge</text>
+    <text x="105" y="148" text-anchor="middle" fill="#60a5fa" font-size="11" font-weight="600">React 18 + Vite 5 SPA</text>
+    <text x="105" y="164" text-anchor="middle" fill="#94a3b8" font-size="10.5">Tailwind CSS Glassmorphism</text>
 
-    <rect x="15" y="212" width="180" height="32" rx="6" fill="#064e3b" />
-    <text x="105" y="232" text-anchor="middle" fill="#6ee7b7" font-size="10" font-weight="600">Docker Container (Alpine)</text>
+    <!-- Edge Features -->
+    <g transform="translate(15, 185)">
+      <rect width="180" height="32" rx="6" fill="#1e293b" stroke="#334155" />
+      <text x="90" y="20" text-anchor="middle" fill="#e2e8f0" font-size="10.5">⚡ HTTP/2 Anycast CDN</text>
+
+      <rect y="40" width="180" height="32" rx="6" fill="#1e293b" stroke="#334155" />
+      <text x="90" y="60" text-anchor="middle" fill="#e2e8f0" font-size="10.5">🔒 Automatic SSL / TLS</text>
+
+      <rect y="80" width="180" height="32" rx="6" fill="#1e293b" stroke="#334155" />
+      <text x="90" y="100" text-anchor="middle" fill="#e2e8f0" font-size="10.5">📦 Automated Git CI/CD</text>
+    </g>
+
+    <text x="105" y="325" text-anchor="middle" fill="#64748b" font-size="9.5">Domain: vercel.app</text>
   </g>
 
-  <!-- 3. AI / LLM Serverless Layer -->
-  <g transform="translate(540, 140)">
-    <rect width="190" height="140" rx="12" fill="#0f172a" stroke="#a855f7" stroke-width="2" filter="url(#shadow)" />
-    <rect width="190" height="32" rx="12" fill="url(#purpleGrad)" />
-    <text x="95" y="22" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">AI Intelligence Engine</text>
-    
-    <text x="95" y="60" text-anchor="middle" fill="#c084fc" font-size="11" font-weight="700">Dual-Engine Strategy</text>
-    <text x="95" y="80" text-anchor="middle" fill="#f1f5f9" font-size="11">1. Google Gemini API</text>
-    <text x="95" y="98" text-anchor="middle" fill="#94a3b8" font-size="10">Contextual Diet Generation</text>
-    <text x="95" y="118" text-anchor="middle" fill="#38bdf8" font-size="11">2. Offline Fallback Logic</text>
-    <text x="95" y="132" text-anchor="middle" fill="#94a3b8" font-size="9">BMR / TDEE Mathematical Engine</text>
+  <!-- ========================================== -->
+  <!-- 2. COMPUTE TIER (RENDER DOCKER PAAS)       -->
+  <!-- ========================================== -->
+  <g transform="translate(320, 195)">
+    <rect width="250" height="430" rx="16" fill="#0f172a" stroke="#10b981" stroke-width="2" filter="url(#shadow)" />
+    <path d="M 0 16 A 16 16 0 0 1 16 0 L 234 0 A 16 16 0 0 1 250 16 L 250 44 L 0 44 Z" fill="url(#emeraldGrad)" />
+    <text x="125" y="27" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="800">2. Compute PaaS (Render)</text>
+
+    <!-- Docker badge -->
+    <g transform="translate(18, 56)">
+      <rect width="214" height="48" rx="8" fill="#064e3b" stroke="#059669" />
+      <text x="107" y="22" text-anchor="middle" fill="#6ee7b7" font-size="11" font-weight="800">FastAPI REST Gateway</text>
+      <text x="107" y="38" text-anchor="middle" fill="#a7f3d0" font-size="9.5">Docker Container • Python 3.11 • Uvicorn</text>
+    </g>
+
+    <!-- Sub-components inside backend -->
+    <g transform="translate(18, 116)">
+      <!-- Auth Module -->
+      <rect width="214" height="46" rx="8" fill="#1e293b" stroke="#334155" />
+      <text x="16" y="20" fill="#60a5fa" font-size="11" font-weight="700">Stateless JWT Auth</text>
+      <text x="16" y="34" fill="#94a3b8" font-size="9.5">HMAC-SHA256 • Bcrypt • Zero Memory State</text>
+
+      <!-- Metabolic Engine -->
+      <rect y="54" width="214" height="46" rx="8" fill="#1e293b" stroke="#334155" />
+      <text x="16" y="74" fill="#34d399" font-size="11" font-weight="700">Mifflin-St Jeor Engine</text>
+      <text x="16" y="88" fill="#94a3b8" font-size="9.5">Clinical BMR / TDEE &amp; Macro Calculations</text>
+
+      <!-- Presigned Signer -->
+      <rect y="108" width="214" height="46" rx="8" fill="#1e293b" stroke="#334155" />
+      <text x="16" y="128" fill="#fbbf24" font-size="11" font-weight="700">Presigned Storage Signer</text>
+      <text x="16" y="142" fill="#94a3b8" font-size="9.5">Time-Limited Tenant-Isolated Token Access</text>
+
+      <!-- Connection Pooler -->
+      <rect y="162" width="214" height="46" rx="8" fill="#1e293b" stroke="#334155" />
+      <text x="16" y="182" fill="#c084fc" font-size="11" font-weight="700">SQLAlchemy 2.0 Pool</text>
+      <text x="16" y="196" fill="#94a3b8" font-size="9.5">Auto-Reconnecting Pool with Pre-Ping</text>
+    </g>
+
+    <!-- Health check footer -->
+    <g transform="translate(18, 385)">
+      <rect width="214" height="30" rx="6" fill="#09101d" stroke="#1e293b" />
+      <circle cx="16" cy="15" r="4" fill="#10b981" />
+      <text x="28" y="19" fill="#94a3b8" font-size="9.5">Live Health Check: <tspan fill="#34d399">/health (200 OK)</tspan></text>
+    </g>
   </g>
 
-  <!-- 4. Cloud Database Tier -->
-  <g transform="translate(770, 140)">
-    <rect width="180" height="140" rx="12" fill="#0f172a" stroke="#3b82f6" stroke-width="2" filter="url(#shadow)" />
-    <rect width="180" height="32" rx="12" fill="url(#blueGrad)" />
-    <text x="90" y="22" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">Managed Cloud Database</text>
-    
-    <circle cx="90" cy="62" r="16" fill="#1e3a8a" />
-    <text x="90" y="67" text-anchor="middle" fill="#93c5fd" font-size="14">🗄️</text>
-    <text x="90" y="94" text-anchor="middle" fill="#f1f5f9" font-size="11" font-weight="600">PostgreSQL / Supabase</text>
-    <text x="90" y="110" text-anchor="middle" fill="#94a3b8" font-size="10">Users • Profiles • Diet Plans</text>
-    <text x="90" y="125" text-anchor="middle" fill="#64748b" font-size="9">(Dev: SQLite Local DB)</text>
+  <!-- ========================================== -->
+  <!-- 3. AI INFERENCE TIER (GEMINI + FALLBACK)   -->
+  <!-- ========================================== -->
+  <g transform="translate(630, 180)">
+    <rect width="240" height="210" rx="16" fill="#0f172a" stroke="#a855f7" stroke-width="2" filter="url(#shadow)" />
+    <path d="M 0 16 A 16 16 0 0 1 16 0 L 224 0 A 16 16 0 0 1 240 16 L 240 44 L 0 44 Z" fill="url(#purpleGrad)" />
+    <text x="120" y="27" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="800">3. AI Intelligence Tier</text>
+
+    <!-- Engine 1 -->
+    <g transform="translate(16, 56)">
+      <rect width="208" height="60" rx="8" fill="#1e293b" stroke="#7e22ce" />
+      <text x="14" y="22" fill="#c084fc" font-size="11" font-weight="800">1. Google Gemini 1.5 Flash</text>
+      <text x="14" y="38" fill="#e2e8f0" font-size="10">Generative Nutrition LLM</text>
+      <text x="14" y="50" fill="#94a3b8" font-size="9">Structured JSON Diet Schema Output</text>
+    </g>
+
+    <!-- Engine 2 -->
+    <g transform="translate(16, 126)">
+      <rect width="208" height="60" rx="8" fill="#1e293b" stroke="#334155" />
+      <text x="14" y="22" fill="#38bdf8" font-size="11" font-weight="800">2. Deterministic Math Engine</text>
+      <text x="14" y="38" fill="#e2e8f0" font-size="10">Clinical Rule-Based Fallback</text>
+      <text x="14" y="50" fill="#94a3b8" font-size="9">Zero-Downtime Offline Redundancy</text>
+    </g>
   </g>
 
-  <!-- 5. Cloud Object Storage Tier -->
-  <g transform="translate(540, 320)">
-    <rect width="410" height="170" rx="12" fill="#0f172a" stroke="#f59e0b" stroke-width="2" filter="url(#shadow)" />
-    <rect width="410" height="32" rx="12" fill="url(#amberGrad)" />
-    <text x="205" y="22" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">Cloud Object Storage (S3 / GCS / Local Bucket)</text>
-    
-    <rect x="20" y="48" width="175" height="105" rx="8" fill="#1e293b" stroke="#334155" />
-    <text x="107" y="70" text-anchor="middle" fill="#fbbf24" font-size="11" font-weight="600">Storage Abstraction Layer</text>
-    <text x="107" y="88" text-anchor="middle" fill="#94a3b8" font-size="10">• Python Strategy Pattern</text>
-    <text x="107" y="104" text-anchor="middle" fill="#94a3b8" font-size="10">• Path Traversal Sanitizer</text>
-    <text x="107" y="120" text-anchor="middle" fill="#94a3b8" font-size="10">• Presigned URL Generation</text>
-    <text x="107" y="136" text-anchor="middle" fill="#94a3b8" font-size="10">• Stream / Chunked Uploads</text>
+  <!-- ========================================== -->
+  <!-- 4. CLOUD DATABASE TIER (SUPABASE PG15)     -->
+  <!-- ========================================== -->
+  <g transform="translate(910, 180)">
+    <rect width="230" height="210" rx="16" fill="#0f172a" stroke="#6366f1" stroke-width="2" filter="url(#shadow)" />
+    <path d="M 0 16 A 16 16 0 0 1 16 0 L 214 0 A 16 16 0 0 1 230 16 L 230 44 L 0 44 Z" fill="url(#indigoGrad)" />
+    <text x="115" y="27" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="800">4. Managed Database</text>
 
-    <rect x="215" y="48" width="175" height="105" rx="8" fill="#1e293b" stroke="#334155" />
-    <text x="302" y="70" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="600">Multi-Tenant Key Hierarchy</text>
-    <text x="302" y="88" text-anchor="middle" fill="#f8fafc" font-size="10" font-family="monospace">bucket/</text>
-    <text x="302" y="104" text-anchor="middle" fill="#a7f3d0" font-size="10" font-family="monospace">├── user_abc123/</text>
-    <text x="302" y="120" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="monospace">│   ├── blood_report.pdf</text>
-    <text x="302" y="136" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="monospace">│   └── meal_log.json</text>
+    <circle cx="115" cy="80" r="22" fill="#312e81" />
+    <text x="115" y="87" text-anchor="middle" font-size="18">🗄️</text>
+    <text x="115" y="120" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="800">Supabase DBaaS</text>
+    <text x="115" y="136" text-anchor="middle" fill="#a5b4fc" font-size="10.5">PostgreSQL 15 (AWS Mumbai)</text>
+
+    <!-- Tables -->
+    <g transform="translate(16, 150)">
+      <rect width="198" height="44" rx="6" fill="#1e293b" stroke="#334155" />
+      <text x="99" y="18" text-anchor="middle" fill="#e2e8f0" font-size="10">Users • UserProfiles • DietPlans</text>
+      <text x="99" y="32" text-anchor="middle" fill="#818cf8" font-size="9.5 font-weight=600">Strict Row-Level Isolation</text>
+    </g>
   </g>
 
-  <!-- Connectors -->
-  <!-- Client <-> Backend -->
-  <line x1="190" y1="290" x2="260" y2="290" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)" />
-  <text x="225" y="278" text-anchor="middle" fill="#94a3b8" font-size="9">HTTPS / JWT</text>
+  <!-- ========================================== -->
+  <!-- 5. OBJECT STORAGE TIER (DECOUPLED VAULT)   -->
+  <!-- ========================================== -->
+  <g transform="translate(630, 425)">
+    <rect width="510" height="200" rx="16" fill="#0f172a" stroke="#f59e0b" stroke-width="2" filter="url(#shadow)" />
+    <path d="M 0 16 A 16 16 0 0 1 16 0 L 494 0 A 16 16 0 0 1 510 16 L 510 44 L 0 44 Z" fill="url(#amberGrad)" />
+    <text x="255" y="27" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="800">5. Cloud Object Storage Vault (Decoupled)</text>
 
-  <!-- Backend <-> AI Engine -->
-  <line x1="470" y1="210" x2="540" y2="210" stroke="#a855f7" stroke-width="2" marker-end="url(#arrow)" />
-  
-  <!-- Backend <-> Database -->
-  <line x1="470" y1="180" x2="770" y2="180" stroke="#3b82f6" stroke-width="2" stroke-dasharray="4,2" marker-end="url(#arrow)" />
-  <text x="620" y="173" text-anchor="middle" fill="#93c5fd" font-size="9">SQLAlchemy ORM</text>
+    <!-- Left Box: Storage Abstraction -->
+    <g transform="translate(18, 56)">
+      <rect width="230" height="126" rx="8" fill="#1e293b" stroke="#334155" />
+      <text x="16" y="24" fill="#fbbf24" font-size="11" font-weight="700">Object Storage Abstraction</text>
+      <text x="16" y="44" fill="#cbd5e1" font-size="10">• Python Abstract Base Strategy</text>
+      <text x="16" y="62" fill="#cbd5e1" font-size="10">• Path Traversal Sanitization</text>
+      <text x="16" y="80" fill="#cbd5e1" font-size="10">• AWS S3 / GCS / Local Bucket</text>
+      <text x="16" y="98" fill="#cbd5e1" font-size="10">• Presigned URL Token Generator</text>
+      <text x="16" y="114" fill="#34d399" font-size="9.5 font-weight=600">Zero Public Read Policy</text>
+    </g>
 
-  <!-- Backend <-> Object Storage -->
-  <line x1="470" y1="370" x2="540" y2="370" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrow)" />
-  <text x="505" y="362" text-anchor="middle" fill="#fbbf24" font-size="9">IO Stream</text>
+    <!-- Right Box: Tenant Hierarchy -->
+    <g transform="translate(262, 56)">
+      <rect width="230" height="126" rx="8" fill="#1e293b" stroke="#334155" />
+      <text x="16" y="24" fill="#38bdf8" font-size="11" font-weight="700">Multi-Tenant Key Hierarchy</text>
+      <text x="16" y="46" fill="#f8fafc" font-size="10" font-family="monospace">cloud_bucket/</text>
+      <text x="26" y="64" fill="#a7f3d0" font-size="10" font-family="monospace">├── user_abc123/</text>
+      <text x="36" y="82" fill="#94a3b8" font-size="9.5" font-family="monospace">│   ├── blood_panel.pdf</text>
+      <text x="36" y="100" fill="#94a3b8" font-size="9.5" font-family="monospace">│   └── meal_log.json</text>
+      <text x="26" y="118" fill="#fbbf24" font-size="9.5" font-family="monospace">└── user_xyz789/ (isolated)</text>
+    </g>
+  </g>
 
-  <!-- Direct Presigned URL Access (Client direct to Storage) -->
-  <path d="M 110 380 C 110 490, 480 490, 540 430" fill="none" stroke="#64748b" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow)" />
-  <text x="280" y="505" text-anchor="middle" fill="#94a3b8" font-size="10">Direct S3/Presigned Download</text>
+  <!-- ========================================== -->
+  <!-- CONNECTORS & FLOWS                         -->
+  <!-- ========================================== -->
+
+  <!-- Client to Backend -->
+  <line x1="250" y1="410" x2="320" y2="410" stroke="#3b82f6" stroke-width="2.5" marker-end="url(#arrowBlue)" />
+  <rect x="254" y="388" width="62" height="18" rx="4" fill="#1e293b" stroke="#3b82f6" />
+  <text x="285" y="401" text-anchor="middle" fill="#93c5fd" font-size="9" font-weight="700">REST / JWT</text>
+
+  <!-- Backend to AI Engine -->
+  <path d="M 570 280 L 630 280" fill="none" stroke="#a855f7" stroke-width="2" marker-end="url(#arrow)" />
+  <rect x="578" y="266" width="44" height="16" rx="4" fill="#1e293b" stroke="#a855f7" />
+  <text x="600" y="278" text-anchor="middle" fill="#c084fc" font-size="8.5" font-weight="700">JSON</text>
+
+  <!-- Backend to Database -->
+  <path d="M 570 320 C 600 320, 600 240, 630 240 L 910 240" fill="none" stroke="#6366f1" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#arrow)" />
+  <rect x="740" y="228" width="80" height="16" rx="4" fill="#1e293b" stroke="#6366f1" />
+  <text x="780" y="240" text-anchor="middle" fill="#a5b4fc" font-size="8.5" font-weight="700">SSL Connection</text>
+
+  <!-- Backend to Object Storage -->
+  <path d="M 570 510 L 630 510" fill="none" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrow)" />
+  <rect x="580" y="496" width="40" height="16" rx="4" fill="#1e293b" stroke="#f59e0b" />
+  <text x="600" y="508" text-anchor="middle" fill="#fbbf24" font-size="8.5" font-weight="700">Stream</text>
+
+  <!-- Direct Client to Presigned Storage Download -->
+  <path d="M 145 580 C 145 680, 520 680, 630 590" fill="none" stroke="#10b981" stroke-width="1.8" stroke-dasharray="5,4" marker-end="url(#arrowGreen)" />
+  <rect x="330" y="666" width="200" height="20" rx="4" fill="#064e3b" stroke="#10b981" />
+  <text x="430" y="680" text-anchor="middle" fill="#6ee7b7" font-size="9.5" font-weight="700">Authorized Direct Presigned Download</text>
 
 </svg>

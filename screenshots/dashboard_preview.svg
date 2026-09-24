@@ -1,129 +1,281 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" width="100%" height="100%" style="background:#f8fafc; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 780" width="100%" height="100%" style="background:#f1f5f9; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
   <defs>
-    <filter id="cardShadow" x="-2%" y="-2%" width="104%" height="104%">
-      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.06" />
+    <filter id="winShadow" x="-3%" y="-2%" width="106%" height="106%">
+      <feDropShadow dx="0" dy="12" stdDeviation="20" flood-color="#0f172a" flood-opacity="0.12" />
     </filter>
+    <filter id="cardShadow" x="-2%" y="-2%" width="104%" height="105%">
+      <feDropShadow dx="0" dy="2" stdDeviation="5" flood-color="#0f172a" flood-opacity="0.05" />
+    </filter>
+    <linearGradient id="emeraldBanner" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#059669" />
+      <stop offset="50%" stop-color="#0d9488" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+    <linearGradient id="primaryPill" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
   </defs>
 
-  <!-- Top App Navigation Bar -->
-  <rect x="0" y="0" width="1000" height="60" fill="#ffffff" stroke="#e2e8f0" />
-  <circle cx="45" cy="30" r="14" fill="#10b981" />
-  <text x="45" y="35" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="900">🥗</text>
-  <text x="70" y="36" fill="#0f172a" font-size="16" font-weight="700">NutriCloud <tspan fill="#10b981" font-weight="400">AI</tspan></text>
-  
-  <text x="500" y="35" fill="#0f172a" font-size="13" font-weight="600">Dashboard</text>
-  <text x="600" y="35" fill="#64748b" font-size="13">Generate Plan</text>
-  <text x="720" y="35" fill="#64748b" font-size="13">Cloud Storage Vault</text>
-  <text x="880" y="35" fill="#0f172a" font-size="13" font-weight="600">👤 Demo User</text>
+  <!-- Browser Window Wrapper -->
+  <g transform="translate(30, 20)">
+    <!-- Window Frame Outer -->
+    <rect width="1140" height="740" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" filter="url(#winShadow)" />
 
-  <!-- Main Container -->
-  <!-- Header Section -->
-  <text x="60" y="110" fill="#0f172a" font-size="24" font-weight="800">Welcome back, Demo! 👋</text>
-  <text x="60" y="132" fill="#64748b" font-size="13">Here is your cloud nutrition intelligence &amp; synchronized biometric data.</text>
-
-  <rect x="730" y="95" width="120" height="36" rx="6" fill="#10b981" />
-  <text x="790" y="118" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="600">+ Generate Plan</text>
-
-  <rect x="860" y="95" width="80" height="36" rx="6" fill="#ffffff" stroke="#cbd5e1" />
-  <text x="900" y="118" text-anchor="middle" fill="#334155" font-size="12" font-weight="500">Upload File</text>
-
-  <!-- Metric Stat Cards (4 columns) -->
-  <!-- Card 1 -->
-  <g transform="translate(60, 160)">
-    <rect width="205" height="90" rx="8" fill="#ecfdf5" stroke="#a7f3d0" />
-    <text x="16" y="28" fill="#059669" font-size="11" font-weight="700" letter-spacing="0.5">TOTAL PLANS GENERATED</text>
-    <text x="16" y="65" fill="#065f46" font-size="28" font-weight="800">4</text>
-    <text x="160" y="58" font-size="26">📋</text>
-  </g>
-
-  <!-- Card 2 -->
-  <g transform="translate(285, 160)">
-    <rect width="205" height="90" rx="8" fill="#eff6ff" stroke="#bfdbfe" />
-    <text x="16" y="28" fill="#2563eb" font-size="11" font-weight="700" letter-spacing="0.5">FILES IN CLOUD VAULT</text>
-    <text x="16" y="65" fill="#1e40af" font-size="28" font-weight="800">3</text>
-    <text x="160" y="58" font-size="26">☁️</text>
-  </g>
-
-  <!-- Card 3 -->
-  <g transform="translate(510, 160)">
-    <rect width="205" height="90" rx="8" fill="#fff7ed" stroke="#fed7aa" />
-    <text x="16" y="28" fill="#ea580c" font-size="11" font-weight="700" letter-spacing="0.5">CURRENT TARGET GOAL</text>
-    <text x="16" y="65" fill="#9a3412" font-size="20" font-weight="800">Maintenance</text>
-    <text x="160" y="58" font-size="26">🎯</text>
-  </g>
-
-  <!-- Card 4 -->
-  <g transform="translate(735, 160)">
-    <rect width="205" height="90" rx="8" fill="#faf5ff" stroke="#e9d5ff" />
-    <text x="16" y="28" fill="#9333ea" font-size="11" font-weight="700" letter-spacing="0.5">DIETARY RESTRICTION</text>
-    <text x="16" y="65" fill="#6b21a8" font-size="20" font-weight="800">Vegetarian</text>
-    <text x="160" y="58" font-size="26">🥑</text>
-  </g>
-
-  <!-- Two Column Layout: Active Diet Plan & Cloud Storage Status -->
-  <!-- Left Box: Active Plan -->
-  <g transform="translate(60, 275)">
-    <rect width="530" height="290" rx="10" fill="#ffffff" stroke="#e2e8f0" filter="url(#cardShadow)" />
-    <text x="24" y="35" fill="#0f172a" font-size="16" font-weight="700">Active AI Diet Plan (Target: 2,150 kcal)</text>
-    <rect x="420" y="18" width="90" height="24" rx="12" fill="#dcfce7" />
-    <text x="465" y="34" text-anchor="middle" fill="#15803d" font-size="11" font-weight="600">AI Synced</text>
-
-    <!-- Macro Breakdown -->
-    <rect x="24" y="55" width="150" height="50" rx="6" fill="#f8fafc" stroke="#e2e8f0" />
-    <text x="36" y="75" fill="#64748b" font-size="10">PROTEIN</text>
-    <text x="36" y="95" fill="#0f172a" font-size="14" font-weight="700">125g (25%)</text>
-
-    <rect x="190" y="55" width="150" height="50" rx="6" fill="#f8fafc" stroke="#e2e8f0" />
-    <text x="202" y="75" fill="#64748b" font-size="10">CARBS</text>
-    <text x="202" y="95" fill="#0f172a" font-size="14" font-weight="700">268g (50%)</text>
-
-    <rect x="356" y="55" width="150" height="50" rx="6" fill="#f8fafc" stroke="#e2e8f0" />
-    <text x="368" y="75" fill="#64748b" font-size="10">FATS</text>
-    <text x="368" y="95" fill="#0f172a" font-size="14" font-weight="700">60g (25%)</text>
-
-    <!-- Meal Samples -->
-    <text x="24" y="135" fill="#334155" font-size="12" font-weight="700">MEAL ITINERARY</text>
+    <!-- Browser Window Titlebar -->
+    <path d="M 0 16 A 16 16 0 0 1 16 0 L 1124 0 A 16 16 0 0 1 1140 16 L 1140 44 L 0 44 Z" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1" />
     
-    <rect x="24" y="145" width="482" height="38" rx="6" fill="#f1f5f9" />
-    <text x="36" y="168" fill="#0f172a" font-size="12" font-weight="600">🥣 Breakfast: Oatmeal with almond milk, chia seeds, banana (480 kcal)</text>
+    <!-- Window Controls -->
+    <circle cx="24" cy="22" r="6" fill="#ef4444" />
+    <circle cx="44" cy="22" r="6" fill="#f59e0b" />
+    <circle cx="64" cy="22" r="6" fill="#10b981" />
 
-    <rect x="24" y="190" width="482" height="38" rx="6" fill="#f1f5f9" />
-    <text x="36" y="213" fill="#0f172a" font-size="12" font-weight="600">🥗 Lunch: Quinoa bowl with spiced tofu, chickpeas &amp; spinach (680 kcal)</text>
+    <!-- Browser Address Bar -->
+    <rect x="240" y="10" width="660" height="24" rx="6" fill="#ffffff" stroke="#cbd5e1" />
+    <text x="255" y="26" fill="#10b981" font-size="11" font-weight="700">🔒 https://</text>
+    <text x="320" y="26" fill="#334155" font-size="11">ai-powered-personal-diet-planner-cloud-rohitsingh83.vercel.app/dashboard</text>
+    <rect x="830" y="14" width="60" height="16" rx="4" fill="#ecfdf5" />
+    <text x="860" y="25" text-anchor="middle" fill="#059669" font-size="9" font-weight="700">VERCEL EDGE</text>
 
-    <rect x="24" y="235" width="482" height="38" rx="6" fill="#f1f5f9" />
-    <text x="36" y="258" fill="#0f172a" font-size="12" font-weight="600">🍲 Dinner: Lentil dal curry with brown rice and steamed broccoli (590 kcal)</text>
-  </g>
+    <!-- App Top Navigation Bar -->
+    <g transform="translate(0, 44)">
+      <rect width="1140" height="60" fill="#ffffff" stroke="#e2e8f0" />
+      
+      <!-- Brand Logo -->
+      <circle cx="36" cy="30" r="15" fill="#10b981" />
+      <text x="36" y="36" text-anchor="middle" fill="#ffffff" font-size="15">🥗</text>
+      <text x="62" y="35" fill="#0f172a" font-size="17" font-weight="800" letter-spacing="-0.3">NutriCloud <tspan fill="#10b981">AI</tspan></text>
+      <rect x="182" y="21" width="76" height="18" rx="9" fill="#ecfdf5" stroke="#a7f3d0" />
+      <text x="220" y="33" text-anchor="middle" fill="#065f46" font-size="9" font-weight="700">MULTI-CLOUD</text>
 
-  <!-- Right Box: Cloud Object Vault -->
-  <g transform="translate(615, 275)">
-    <rect width="325" height="290" rx="10" fill="#ffffff" stroke="#e2e8f0" filter="url(#cardShadow)" />
-    <text x="20" y="35" fill="#0f172a" font-size="15" font-weight="700">Cloud Storage Bucket Vault</text>
-    <text x="20" y="52" fill="#64748b" font-size="11">Prefix: <tspan font-family="monospace">user_demo123/</tspan></text>
+      <!-- Nav Links -->
+      <g transform="translate(420, 18)">
+        <rect x="0" y="0" width="95" height="26" rx="13" fill="#ecfdf5" />
+        <text x="47" y="17" text-anchor="middle" fill="#059669" font-size="12" font-weight="700">Dashboard</text>
 
-    <!-- File 1 -->
-    <g transform="translate(20, 70)">
-      <rect width="285" height="52" rx="6" fill="#f8fafc" stroke="#e2e8f0" />
-      <text x="12" y="24" font-size="16">📄</text>
-      <text x="36" y="23" fill="#0f172a" font-size="12" font-weight="600">blood_panel_2026.pdf</text>
-      <text x="36" y="38" fill="#64748b" font-size="10">2.4 MB • Presigned URL Active</text>
-      <rect x="225" y="14" width="50" height="24" rx="4" fill="#eff6ff" stroke="#bfdbfe" />
-      <text x="250" y="29" text-anchor="middle" fill="#2563eb" font-size="10" font-weight="600">GET</text>
+        <text x="145" y="17" text-anchor="middle" fill="#64748b" font-size="12" font-weight="500">Generate Plan</text>
+        <text x="245" y="17" text-anchor="middle" fill="#64748b" font-size="12" font-weight="500">Saved Plans</text>
+        <text x="350" y="17" text-anchor="middle" fill="#64748b" font-size="12" font-weight="500">Cloud Vault</text>
+      </g>
+
+      <!-- User Menu -->
+      <g transform="translate(970, 16)">
+        <rect width="145" height="30" rx="15" fill="#f8fafc" stroke="#e2e8f0" />
+        <circle cx="16" cy="15" r="9" fill="#10b981" />
+        <text x="16" y="19" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">D</text>
+        <text x="32" y="19" fill="#0f172a" font-size="11" font-weight="600">Demo User</text>
+        <circle cx="128" cy="15" r="3.5" fill="#10b981" />
+      </g>
     </g>
 
-    <!-- File 2 -->
-    <g transform="translate(20, 132)">
-      <rect width="285" height="52" rx="6" fill="#f8fafc" stroke="#e2e8f0" />
-      <text x="12" y="24" font-size="16">📊</text>
-      <text x="36" y="23" fill="#0f172a" font-size="12" font-weight="600">nutrition_log_week1.json</text>
-      <text x="36" y="38" fill="#64748b" font-size="10">48 KB • LocalStack/S3 Sync</text>
-      <rect x="225" y="14" width="50" height="24" rx="4" fill="#eff6ff" stroke="#bfdbfe" />
-      <text x="250" y="29" text-anchor="middle" fill="#2563eb" font-size="10" font-weight="600">GET</text>
-    </g>
+    <!-- Main Content Area -->
+    <g transform="translate(30, 120)">
+      
+      <!-- Welcome Hero Banner -->
+      <rect width="1080" height="110" rx="16" fill="url(#emeraldBanner)" filter="url(#cardShadow)" />
+      <!-- Subtle background circles -->
+      <circle cx="1020" cy="30" r="90" fill="#ffffff" opacity="0.08" />
+      <circle cx="920" cy="90" r="60" fill="#ffffff" opacity="0.06" />
 
-    <!-- Cloud Info Banner -->
-    <rect x="20" y="200" width="285" height="65" rx="6" fill="#ecfdf5" stroke="#a7f3d0" />
-    <text x="30" y="222" fill="#065f46" font-size="11" font-weight="700">🔒 Zero-Trust File Isolation</text>
-    <text x="30" y="240" fill="#047857" font-size="10">Files isolated via tenant UID prefixes and</text>
-    <text x="30" y="254" fill="#047857" font-size="10">time-limited presigned authentication tokens.</text>
+      <g transform="translate(26, 20)">
+        <rect width="148" height="20" rx="10" fill="#ffffff" opacity="0.2" />
+        <text x="74" y="14" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">✨ ACTIVE CLOUD SESSION</text>
+        
+        <text x="0" y="48" fill="#ffffff" font-size="24" font-weight="900" letter-spacing="-0.5">Welcome back, Demo! 👋</text>
+        <text x="0" y="70" fill="#ccfbf1" font-size="12">Your personalized nutritional parameters and cloud medical vault are synchronized with Supabase PG15.</text>
+      </g>
+
+      <!-- Banner Actions -->
+      <g transform="translate(820, 36)">
+        <rect width="125" height="38" rx="8" fill="#ffffff" filter="url(#cardShadow)" />
+        <text x="62" y="24" text-anchor="middle" fill="#065f46" font-size="12" font-weight="700">⚡ Generate Plan</text>
+
+        <rect x="135" y="0" width="105" height="38" rx="8" fill="#064e3b" opacity="0.6" stroke="#34d399" stroke-width="1" />
+        <text x="187" y="24" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="600">☁️ Cloud Vault</text>
+      </g>
+
+      <!-- 4 KPI Cards Strip -->
+      <g transform="translate(0, 126)">
+        <!-- Card 1 -->
+        <g transform="translate(0, 0)">
+          <rect width="255" height="84" rx="12" fill="#ffffff" stroke="#e2e8f0" filter="url(#cardShadow)" />
+          <path d="M 0 12 A 12 12 0 0 1 12 0 L 243 0 A 12 12 0 0 1 255 12 L 255 16 L 0 16 Z" fill="#ecfdf5" opacity="0.6" />
+          <text x="16" y="34" fill="#64748b" font-size="10" font-weight="700" letter-spacing="0.5">TOTAL PLANS</text>
+          <text x="220" y="36" text-anchor="end" font-size="16">🥗</text>
+          <text x="16" y="64" fill="#0f172a" font-size="26" font-weight="900">4</text>
+          <text x="16" y="78" fill="#059669" font-size="9" font-weight="600">Saved in PostgreSQL</text>
+        </g>
+
+        <!-- Card 2 -->
+        <g transform="translate(275, 0)">
+          <rect width="255" height="84" rx="12" fill="#ffffff" stroke="#e2e8f0" filter="url(#cardShadow)" />
+          <path d="M 0 12 A 12 12 0 0 1 12 0 L 243 0 A 12 12 0 0 1 255 12 L 255 16 L 0 16 Z" fill="#eff6ff" opacity="0.6" />
+          <text x="16" y="34" fill="#64748b" font-size="10" font-weight="700" letter-spacing="0.5">FILES STORED</text>
+          <text x="220" y="36" text-anchor="end" font-size="16">📁</text>
+          <text x="16" y="64" fill="#0f172a" font-size="26" font-weight="900">3</text>
+          <text x="16" y="78" fill="#2563eb" font-size="9" font-weight="600">Object Storage Vault</text>
+        </g>
+
+        <!-- Card 3 -->
+        <g transform="translate(550, 0)">
+          <rect width="255" height="84" rx="12" fill="#ffffff" stroke="#e2e8f0" filter="url(#cardShadow)" />
+          <path d="M 0 12 A 12 12 0 0 1 12 0 L 243 0 A 12 12 0 0 1 255 12 L 255 16 L 0 16 Z" fill="#fff7ed" opacity="0.6" />
+          <text x="16" y="34" fill="#64748b" font-size="10" font-weight="700" letter-spacing="0.5">TARGET GOAL</text>
+          <text x="220" y="36" text-anchor="end" font-size="16">🎯</text>
+          <text x="16" y="64" fill="#0f172a" font-size="18" font-weight="800">Maintenance</text>
+          <text x="16" y="78" fill="#ea580c" font-size="9" font-weight="600">Active Target Goal</text>
+        </g>
+
+        <!-- Card 4 -->
+        <g transform="translate(825, 0)">
+          <rect width="255" height="84" rx="12" fill="#ffffff" stroke="#e2e8f0" filter="url(#cardShadow)" />
+          <path d="M 0 12 A 12 12 0 0 1 12 0 L 243 0 A 12 12 0 0 1 255 12 L 255 16 L 0 16 Z" fill="#faf5ff" opacity="0.6" />
+          <text x="16" y="34" fill="#64748b" font-size="10" font-weight="700" letter-spacing="0.5">DIET PREFERENCE</text>
+          <text x="220" y="36" text-anchor="end" font-size="16">🥦</text>
+          <text x="16" y="64" fill="#0f172a" font-size="18" font-weight="800">Vegetarian</text>
+          <text x="16" y="78" fill="#9333ea" font-size="9" font-weight="600">Allergy Filter Active</text>
+        </g>
+      </g>
+
+      <!-- Main Two-Column Layout -->
+      <!-- Left Column: Biometric Indicators & Active Diet Plan -->
+      <g transform="translate(0, 226)">
+        <rect width="710" height="360" rx="14" fill="#ffffff" stroke="#e2e8f0" filter="url(#cardShadow)" />
+        
+        <!-- Header -->
+        <text x="24" y="32" fill="#0f172a" font-size="15" font-weight="800">Biometric Health Indicators</text>
+        <text x="24" y="48" fill="#64748b" font-size="11">Calculated using the clinical Mifflin-St Jeor metabolic formula</text>
+        <rect x="600" y="18" width="86" height="24" rx="6" fill="#ecfdf5" />
+        <text x="643" y="34" text-anchor="middle" fill="#059669" font-size="10" font-weight="700">Edit Metrics →</text>
+
+        <!-- 4 Sub-Boxes for Metrics -->
+        <g transform="translate(24, 62)">
+          <!-- BMI -->
+          <rect width="154" height="74" rx="10" fill="#f8fafc" stroke="#e2e8f0" />
+          <text x="12" y="20" fill="#64748b" font-size="10" font-weight="600">Body Mass Index</text>
+          <text x="12" y="46" fill="#0f172a" font-size="20" font-weight="900">23.4</text>
+          <rect x="12" y="52" width="95" height="16" rx="8" fill="#dcfce7" />
+          <text x="59" y="64" text-anchor="middle" fill="#15803d" font-size="8.5" font-weight="700">Optimal / Normal</text>
+
+          <!-- BMR -->
+          <rect x="168" y="0" width="154" height="74" rx="10" fill="#f8fafc" stroke="#e2e8f0" />
+          <text x="180" y="20" fill="#64748b" font-size="10" font-weight="600">Est. BMR</text>
+          <text x="180" y="46" fill="#0f172a" font-size="20" font-weight="900">1,642</text>
+          <text x="180" y="64" fill="#94a3b8" font-size="10">kcal/day basal</text>
+
+          <!-- TDEE -->
+          <rect x="336" y="0" width="154" height="74" rx="10" fill="#f8fafc" stroke="#e2e8f0" />
+          <text x="348" y="20" fill="#64748b" font-size="10" font-weight="600">Daily TDEE</text>
+          <text x="348" y="46" fill="#059669" font-size="20" font-weight="900">2,546</text>
+          <text x="348" y="64" fill="#94a3b8" font-size="10">kcal maintenance</text>
+
+          <!-- Weight/Height -->
+          <rect x="504" y="0" width="158" height="74" rx="10" fill="#f8fafc" stroke="#e2e8f0" />
+          <text x="516" y="20" fill="#64748b" font-size="10" font-weight="600">Weight / Height</text>
+          <text x="516" y="46" fill="#0f172a" font-size="17" font-weight="900">72 kg / 175 cm</text>
+          <text x="516" y="64" fill="#64748b" font-size="10">Age: 28 • Male</text>
+        </g>
+
+        <!-- Active Meal Itinerary -->
+        <g transform="translate(24, 154)">
+          <text x="0" y="16" fill="#0f172a" font-size="13" font-weight="700">Active AI Diet Plan (Target: 2,150 kcal)</text>
+          <rect x="546" y="2" width="116" height="20" rx="10" fill="#ecfdf5" stroke="#a7f3d0" />
+          <text x="604" y="16" text-anchor="middle" fill="#065f46" font-size="9" font-weight="700">✨ DUAL-ENGINE SYNCED</text>
+
+          <!-- Meals -->
+          <g transform="translate(0, 26)">
+            <rect width="662" height="46" rx="8" fill="#f8fafc" stroke="#e2e8f0" />
+            <text x="14" y="22" font-size="14">🥣</text>
+            <text x="36" y="21" fill="#0f172a" font-size="11" font-weight="700">Breakfast: Oats Porridge with Milk, Chia Seeds &amp; Banana</text>
+            <text x="36" y="36" fill="#64748b" font-size="10">480 kcal • Protein: 18g • Carbs: 68g • Fats: 12g • Tags: high-fiber, energizing</text>
+            <rect x="590" y="12" width="60" height="22" rx="4" fill="#ecfdf5" />
+            <text x="620" y="27" text-anchor="middle" fill="#059669" font-size="10" font-weight="700">480 kcal</text>
+          </g>
+
+          <g transform="translate(0, 78)">
+            <rect width="662" height="46" rx="8" fill="#f8fafc" stroke="#e2e8f0" />
+            <text x="14" y="22" font-size="14">🥗</text>
+            <text x="36" y="21" fill="#0f172a" font-size="11" font-weight="700">Lunch: Quinoa Power Bowl with Spiced Tofu &amp; Steamed Broccoli</text>
+            <text x="36" y="36" fill="#64748b" font-size="10">680 kcal • Protein: 32g • Carbs: 82g • Fats: 20g • Tags: high-protein, antioxidant</text>
+            <rect x="590" y="12" width="60" height="22" rx="4" fill="#ecfdf5" />
+            <text x="620" y="27" text-anchor="middle" fill="#059669" font-size="10" font-weight="700">680 kcal</text>
+          </g>
+
+          <g transform="translate(0, 130)">
+            <rect width="662" height="46" rx="8" fill="#f8fafc" stroke="#e2e8f0" />
+            <text x="14" y="22" font-size="14">🍲</text>
+            <text x="36" y="21" fill="#0f172a" font-size="11" font-weight="700">Dinner: Lentil Dal Tadka with Brown Rice &amp; Mixed Salad</text>
+            <text x="36" y="36" fill="#64748b" font-size="10">590 kcal • Protein: 24g • Carbs: 94g • Fats: 11g • Tags: plant-protein, gut-healthy</text>
+            <rect x="590" y="12" width="60" height="22" rx="4" fill="#ecfdf5" />
+            <text x="620" y="27" text-anchor="middle" fill="#059669" font-size="10" font-weight="700">590 kcal</text>
+          </g>
+        </g>
+      </g>
+
+      <!-- Right Column: Cloud Services Telemetry & Quick Vault -->
+      <g transform="translate(730, 226)">
+        <rect width="350" height="360" rx="14" fill="#0f172a" stroke="#1e293b" filter="url(#cardShadow)" />
+        
+        <!-- Header -->
+        <g transform="translate(20, 20)">
+          <text x="0" y="16" fill="#ffffff" font-size="13" font-weight="800" letter-spacing="0.5">☁️ CLOUD TELEMETRY</text>
+          <rect x="235" y="2" width="75" height="18" rx="9" fill="#064e3b" stroke="#059669" stroke-width="1" />
+          <text x="272" y="14" text-anchor="middle" fill="#34d399" font-size="9" font-weight="700">ALL SYSTEMS GO</text>
+        </g>
+
+        <!-- Telemetry Items -->
+        <g transform="translate(20, 52)">
+          <!-- Row 1: Compute -->
+          <rect width="310" height="44" rx="8" fill="#1e293b" stroke="#334155" />
+          <circle cx="16" cy="22" r="4" fill="#10b981" />
+          <text x="28" y="20" fill="#e2e8f0" font-size="11" font-weight="600">Compute PaaS</text>
+          <text x="28" y="33" fill="#64748b" font-size="9">FastAPI Async Uvicorn</text>
+          <text x="296" y="26" text-anchor="end" fill="#34d399" font-size="10" font-family="monospace" font-weight="700">Render Docker</text>
+
+          <!-- Row 2: Database -->
+          <g transform="translate(0, 50)">
+            <rect width="310" height="44" rx="8" fill="#1e293b" stroke="#334155" />
+            <circle cx="16" cy="22" r="4" fill="#10b981" />
+            <text x="28" y="20" fill="#e2e8f0" font-size="11" font-weight="600">Cloud Database</text>
+            <text x="28" y="33" fill="#64748b" font-size="9">AWS Mumbai (ap-south-1)</text>
+            <text x="296" y="26" text-anchor="end" fill="#818cf8" font-size="10" font-family="monospace" font-weight="700">Supabase PG15</text>
+          </g>
+
+          <!-- Row 3: Frontend CDN -->
+          <g transform="translate(0, 100)">
+            <rect width="310" height="44" rx="8" fill="#1e293b" stroke="#334155" />
+            <circle cx="16" cy="22" r="4" fill="#10b981" />
+            <text x="28" y="20" fill="#e2e8f0" font-size="11" font-weight="600">Frontend CDN</text>
+            <text x="28" y="33" fill="#64748b" font-size="9">Global Anycast Edge</text>
+            <text x="296" y="26" text-anchor="end" fill="#38bdf8" font-size="10" font-family="monospace" font-weight="700">Vercel Edge</text>
+          </g>
+
+          <!-- Row 4: Storage Vault -->
+          <g transform="translate(0, 150)">
+            <rect width="310" height="44" rx="8" fill="#1e293b" stroke="#334155" />
+            <circle cx="16" cy="22" r="4" fill="#10b981" />
+            <text x="28" y="20" fill="#e2e8f0" font-size="11" font-weight="600">Storage Decoupling</text>
+            <text x="28" y="33" fill="#64748b" font-size="9">Zero-Trust Isolation</text>
+            <text x="296" y="26" text-anchor="end" fill="#fbbf24" font-size="10" font-family="monospace" font-weight="700">Presigned Vault</text>
+          </g>
+
+          <!-- Row 5: AI Engine -->
+          <g transform="translate(0, 200)">
+            <rect width="310" height="44" rx="8" fill="#1e293b" stroke="#334155" />
+            <circle cx="16" cy="22" r="4" fill="#10b981" />
+            <text x="28" y="20" fill="#e2e8f0" font-size="11" font-weight="600">AI Inference</text>
+            <text x="28" y="33" fill="#64748b" font-size="9">LLM + Constraint Solver</text>
+            <text x="296" y="26" text-anchor="end" fill="#c084fc" font-size="10" font-family="monospace" font-weight="700">Gemini 1.5 Flash</text>
+          </g>
+
+          <!-- Security Footnote -->
+          <g transform="translate(0, 256)">
+            <rect width="310" height="34" rx="6" fill="#09101d" stroke="#1e293b" />
+            <text x="12" y="21" fill="#94a3b8" font-size="9.5">🔒 100% Stateless backend with HMAC JWT verification.</text>
+          </g>
+        </g>
+      </g>
+
+    </g>
   </g>
 </svg>
