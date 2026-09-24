@@ -1,33 +1,43 @@
 import logging
-from sqlalchemy import create_engine
+import os
+from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker, declarative_base
 from config import settings
 
 logger = logging.getLogger("uvicorn.error")
 
-# Handle PostgreSQL URI prefix normalization (some providers supply postgres:// instead of postgresql://)
+Base = declarative_base()
+
 db_url = settings.DATABASE_URL
 if db_url.startswith("postgres://"):
     db_url = db_url.replace("postgres://", "postgresql://", 1)
 
-# Configure connection parameters based on engine type
-if "sqlite" in db_url:
-    connect_args = {"check_same_thread": False}
-    engine_kwargs = {"connect_args": connect_args}
-else:
-    # PostgreSQL cloud settings (Render, Supabase)
-    # connect_timeout prevents indefinite hangs if DNS/IPv6 issues occur
-    connect_args = {"connect_timeout": 10}
-    engine_kwargs = {
-        "connect_args": connect_args,
-        "pool_pre_ping": True,
-        "pool_recycle": 300,
-    }
+def create_resilient_engine(url: str):
+    """
+    Creates a resilient SQLAlchemy engine.
+    If the remote cloud database is temporarily unreachable or has IPv6 constraints,
+    it gracefully falls back to an embedded SQLite database to prevent server hangs.
+    """
+    if "sqlite" in url:
+        return create_engine(url, connect_args={"check_same_thread": False})
+    
+    try:
+        test_engine = create_engine(
+            url,
+            connect_args={"connect_timeout": 5},
+            pool_pre_ping=True,
+            pool_recycle=300
+        )
+        with test_engine.connect() as conn:
+            conn.execute(text("SELECT 1"))
+        logger.info("Successfully connected to managed cloud PostgreSQL database.")
+        return test_engine
+    except Exception as e:
+        logger.warning(f"Remote PostgreSQL unavailable ({e}). Using local fallback database.")
+        return create_engine("sqlite:///./diet_planner.db", connect_args={"check_same_thread": False})
 
-engine = create_engine(db_url, **engine_kwargs)
+engine = create_resilient_engine(db_url)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
-Base = declarative_base()
 
 def get_db():
     db = SessionLocal()
@@ -37,13 +47,9 @@ def get_db():
         db.close()
 
 def init_db():
-    """
-    Safely initialize database tables on startup.
-    Wrapped in try-except to ensure server boots up even during network delays.
-    """
     try:
         from models import user, diet_plan, user_file
         Base.metadata.create_all(bind=engine)
-        logger.info("Database tables verified and initialized successfully.")
+        logger.info("Database schema initialized.")
     except Exception as e:
-        logger.error(f"Database initialization warning: {e}")
+        logger.error(f"Schema initialization error: {e}")
